@@ -1,0 +1,49 @@
+<style>
+  .product-banner {
+    margin: 69px auto 40px;
+    width: 98%;
+    height: 306px;
+  }
+  .bannerimg {
+    background-image: url('{{ section.settings.Bannerimg | img_url: '1200x1200' }}');
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bannerimg h1 {
+    font-size: 60px;
+    font-family: 'Monstserrat', sans-serif;
+    color: white;
+    letter-spacing: 7px;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+  }
+</style>
+
+<div class="bannerimg">
+  <h1>Products</h1>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Products Banner",
+    "class": "product-banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "Bannerimg",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Banner"
+      }
+
+    ]
+  }
+{% endschema %}

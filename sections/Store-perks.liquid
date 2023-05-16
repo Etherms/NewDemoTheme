@@ -1,0 +1,112 @@
+<style>
+  .perksSection {
+    min-width: 380px;
+  }
+  .perksContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 40vh;
+  }
+  .perkIcon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 268px;
+  }
+  .perkIcon span.material-symbols-outlined {
+    font-size: 300%;
+    padding: 8px 14px;
+    border-radius: 13px;
+    margin-bottom: 17px;
+  }
+  h3.feature-title {
+    font-size: 30px;
+    font-weight: 500;
+    font-family: 'Roboto';
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  }
+  p.feature-desc {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+
+  @media(max-width:800px) {
+    .perksContainer {
+      flex-direction: column;
+    }
+    .perkIcon {
+      margin-top: 40px;
+    }
+  }
+</style>
+
+<div class="perksContainer">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'delivery' %}
+      <div class="perkIcon f1">
+        <span class="material-symbols-outlined">
+          local_shipping
+        </span>
+        <h3 class="feature-title">Free Delivery</h3>
+        <p class="feature-desc">For all orders around Metro Manila</p>
+      </div>
+      {% when 'payment' %}
+      <div class="perkIcon  f2">
+        <span class="material-symbols-outlined">
+          assured_workload
+        </span>
+        <h3 class="feature-title">Secure Payment</h3>
+        <p class="feature-desc">100% Secure payment methods</p>
+      </div>
+      {% when 'support' %}
+      <div class="perkIcon  f3">
+        <span class="material-symbols-outlined">
+          phone_in_talk
+        </span>
+        <h3 class="feature-title">24/7 Support</h3>
+        <p class="feature-desc">We have dedicated Support</p>
+      </div>
+    {% endcase %}
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Store Perks Section",
+    "class": "perksSection",
+    "settings": [
+      {
+        "type": "color",
+        "id": "body_text",
+        "label": "Background Color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "delivery",
+        "name": "delivery"
+
+      }, {
+        "type": "payment",
+        "name": "payment"
+      }, {
+        "type": "support",
+        "name": "support"
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Perk Section"
+      }
+
+    ]
+  }
+{%endschema%}

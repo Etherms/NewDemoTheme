@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "9b1915ac-082c-4f8a-9058-2905f61095d8": {
+      "type": "productbanner",
+      "settings": {
+        "Bannerimg": "shopify:\/\/shop_images\/wp2971395.png"
+      }
+    },
+    "a0f2b3f0-0ea1-4ba5-9724-57c6979fbcaa": {
+      "type": "products",
+      "settings": {}
+    },
+    "40b610a1-4dce-48f1-ab0f-6ceda80d3851": {
+      "type": "lineSection",
+      "settings": {
+        "body_text": ""
+      }
+    }
+  },
+  "order": [
+    "9b1915ac-082c-4f8a-9058-2905f61095d8",
+    "a0f2b3f0-0ea1-4ba5-9724-57c6979fbcaa",
+    "40b610a1-4dce-48f1-ab0f-6ceda80d3851"
+  ]
+}

@@ -1,0 +1,167 @@
+<style>
+
+  .sales-container {
+    display: flex;
+    min-width: 380px;
+    min-height: 470px;
+  }
+  /* Left */
+  .left {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    padding-top: 102px;
+    padding-left: 60px;
+  }
+  .item-selled {
+    font-weight: 400;
+    letter-spacing: 5px;
+    font-size: 15px;
+  }
+  .item-desc {
+    line-height: 1.2;
+    margin-bottom: 10px;
+    text-shadow: 4px 1px 9px rgba(0, 0, 0, 0.3);
+  }
+  p.sale-desc {
+    min-width: 20px;
+    font-weight: 100;
+    line-height: 1.6;
+    padding-right: 80px;
+    margin-bottom: 25px;
+  }
+  .shop-now-btn {
+    white-space: nowrap;
+    text-decoration: none;
+    color: white;
+    background-color: #1A1A1A;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    width: 146px;
+    transition: width 0.1s ease-in;
+    border-radius: 27px;
+  }
+
+  .arrow-btn {
+    padding-left: 30px;
+    transition: padding-left 0.2s ease-in;
+  }
+
+  .shop-now-btn:hover {
+    width: 175px;
+    color: white;
+  }
+
+  .shop-now-btn:hover .arrow-btn {
+    padding-left: 8px;
+  }
+
+  .left,
+  .right {
+    padding-bottom: 20px;
+  }
+
+  /* right */
+  .right {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+  }
+
+
+
+  .first-image {
+    z-index: 2;
+    transform: translate(14px , 188px);
+  }
+  .img_1 {
+    width: 137px;
+  }
+  .second-image {
+    transform: translate(-20px, 95px);
+  }
+  .img_2 {
+    height: 300px;
+  }
+
+
+  @media(max-width:700px) {
+    .sales-container {
+      flex-direction: column;
+      flex-direction: column-reverse;
+    }
+    .left {
+      padding-right: 60px;
+      align-items: center;
+    }
+    .item-desc,
+    .item-selled {
+      text-align: center;
+    }
+    p.sale-desc {
+      padding-right: 0;
+      text-align: center;
+    }
+  }
+</style>
+
+
+
+<div class="sales-container">
+  <div class="left">
+    <h3 class="item-selled">GIFT CARDS</h3>
+    <h1 class="item-desc">Support your <br>neighborhood</h1>
+    <p class="sale-desc">Our gift cards offer a multitude of advantages that make them the ideal choice for any occasion. With a vast selection of options to cater to different preferences</p>
+    <a href="{{ section.settings.shopCards }}" class="shop-now-btn">Shop gift cards
+      <span class="material-symbols-outlined arrow-btn">
+        arrow_forward
+      </span>
+    </a>
+  </div>
+  <div class="right">
+    <div class="first-image">
+      <img
+        src="{{ section.settings.image_1 | img_url: '1200x1200' }}"
+        alt=""
+        class="img_1"></div>
+    <div class="second-image"><img
+        src="{{ section.settings.image_2 | img_url: '1200x1200'  }}"
+        alt=""
+        class="img_2">
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Sale Section",
+    "class": "sales-container",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Set First Image"
+      }, {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Set Second Image"
+      }, {
+        "type": "url",
+        "id": "shopCards",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Sale Section"
+      }
+
+    ]
+  }
+{% endschema %}

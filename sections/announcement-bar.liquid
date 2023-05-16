@@ -1,0 +1,113 @@
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'announcement' %}
+
+    <style>
+      .announcement-container {
+        background: {{ block.settings.background_color }}
+        ;
+        min-width: 380px;
+      }
+      .inside-announcement span {
+        font-family: 'Roboto', 'sans-serif';
+        font-weight: 500;
+        font-size: 15px;
+      }
+    </style>
+
+    <div class="inside-announcement" style="display: flex;
+                                                                justify-content:space-evenly;
+                                                                color: {{ block.settings.color_text }};">
+      {% if block.settings.email == true %}
+        <span>
+          {{ block.settings.emailText }}
+        </span>
+      {% endif %}
+      {% if block.settings.announcement-text != blank %}
+        <span>{{ block.settings.announcement-text }}</span>
+      {% endif %}
+      {% if block.settings.location == true %}
+        <span>
+          {{ block.settings.locationText }}
+        </span>
+      {% endif %}
+
+    </div>
+  {% endcase %}
+{% endfor %}
+
+
+
+{% schema %}
+  {
+    "name": "Announcement Bar",
+    "class": "announcement-container",
+    "blocks": [
+      {
+        "type": "announcement",
+        "name": "announcement bar",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "email",
+            "label": "Show Email",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "emailText",
+            "label": "Enter Email Address"
+          },
+          {
+            "type": "text",
+            "id": "announcement-text",
+            "label": "Enter Middle Text Here"
+          },
+          {
+            "type": "checkbox",
+            "id": "location",
+            "label": "Show Location Address",
+            "default": true
+          }, {
+            "type": "text",
+            "id": "locationText",
+            "label": "Enter Location of store"
+          }, {
+            "type": "select",
+            "id": "text_alignment",
+            "options": [
+              {
+                "value": "flex-start",
+                "label": "left"
+              }, {
+                "value": "center",
+                "label": "center"
+              }, {
+                "value": "flex-end",
+                "label": "right"
+              }
+            ],
+            "default": "center",
+            "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.label"
+          }, {
+            "type": "color",
+            "id": "color_text",
+            "label": "Text color"
+          }, {
+            "type": "color_background",
+            "id": "background_color",
+            "label": "Background Color"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "blocks": [
+        {
+          "type": "announcement"
+
+        }
+      ]
+    }
+  }
+{% endschema %}

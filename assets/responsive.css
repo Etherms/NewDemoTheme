@@ -1,0 +1,50 @@
+/* BANNNER SECTION */
+@media (max-width:960px) {
+    .swiper .pause, .swiper .play{
+      right: calc(100vw - 56vw);
+    }
+  }  
+  @media (max-width:790px) {
+    .swiper .pause, .swiper .play{
+      right: calc(100vw - 57vw);
+    }
+  }  
+  @media (max-width:690px) {
+    .swiper .pause, .swiper .play{
+      right: calc(100vw - 59vw);
+    }
+  }  
+  @media (max-width:590px) {
+    .swiper .pause, .swiper .play{
+      right: calc(100vw - 60vw);
+    }
+  }  
+  @media (max-width:490px) {
+    .swiper .pause, .swiper .play{
+      right: calc(100vw - 63vw);
+    }
+  }  
+  @media (max-width:390px) {
+    .swiper .pause, .swiper .play{
+      right: calc(100vw - 66vw);
+    }
+  }  
+
+  @media(max-width:700px) {
+    .sales-container {
+      flex-direction: column;
+      flex-direction: column-reverse;
+    }
+    .left {
+      padding-right: 60px;
+      align-items: center;
+    }
+    .item-desc,
+    .item-selled {
+      text-align: center;
+    }
+    p.sale-desc {
+      padding-right: 0;
+      text-align: center;
+    }
+  }

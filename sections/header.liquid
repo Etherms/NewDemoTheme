@@ -1,0 +1,295 @@
+{% assign background = section.settings.body_text %}
+
+
+<style>
+  header.scrolled {
+    background-color: {{ background}}
+    ;
+  }
+  .header.scrolled > .navmenu-dropdown {
+    background-color: {{ background}}
+    ;
+  }
+</style>
+<div class="header-wrapper">
+  <div class="toggle">
+    <span class="material-symbols-outlined header-menu">
+      menu
+    </span>
+    <span class="material-symbols-outlined search-left search navbar-icon">
+      search
+    </span>
+  </div>
+  <div class="logo-header">
+    {% if section.settings.title != blank %}
+      <a href="https://store2968.myshopify.com" style="text-decoration:none;">
+        <h2 class="store-title">{{ section.settings.title }}</h2>
+      </a>
+    {% endif %}
+  </div>
+  <div class="navbar">
+    <ul>
+      {% for link in section.settings.menu.links %}
+        <li>{{ link.title | link_to: link.url }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="buttons">
+    <span class="material-symbols-outlined search-right search navbar-icon">
+      search
+    </span>
+    <span class="break first-break">|</span>
+    <span class="material-symbols-outlined person navbar-icon">
+      person
+    </span>
+    <span class="break">|</span>
+    <span class="material-symbols-outlined bag navbar-icon">
+      shopping_bag
+    </span>
+  </div>
+</div>
+<div class="navmenu-dropdown">
+  <ul>
+    {% for link in section.settings.menu.links %}
+      <li>{{ link.title | link_to: link.url }}</li>
+    {% endfor %}
+  </ul>
+</div>
+<!-- Search Function Pop-up Div -->
+<form
+  action="/search"
+  method="get"
+  class="search-function">
+  <div class="top">
+    <span
+      type="submit"
+      value="Search"
+      class="material-symbols-outlined inside-search search">
+      search
+    </span>
+    <input
+      type="text"
+      class="search-value"
+      value="{{search.terms | escape}}"
+      placeholder="Search...">
+    <span class="material-symbols-outlined close-search">
+      close
+    </span>
+  </div>
+  <div class="bottom"></div>
+</form>
+<!-- Login Function Pop-up Div -->
+
+
+<div class="login-function">
+  <div class="inside-login-function">
+    <span class="material-symbols-outlined close-login">
+      close
+    </span>
+    <div class="login-function-title">
+      <h1>LOGIN</h1>
+    </div>
+    <div class="login-input-field">
+      <form action="#">
+        <div class="emaildiv">
+          <label for="emailadd">Username</label>
+          <input type="text" id="input-emailadd">
+        </div>
+        <div class="passdiv">
+          <label for="passwd">Password</label>
+          <input
+            type="password"
+            name=""
+            id="input-passwd">
+        </div>
+        <div class="remmberme">
+          <input type="checkbox" class="remmberme-check">
+          <label for="remmberme-check">Remember me</label>
+        </div>
+      </form>
+      <button id="signIn-btn">Sign in</button>
+    </div>
+    <div class="or">
+      <div class="left-line"></div>
+      <span>OR</span>
+      <div class="right-line"></div>
+    </div>
+    <div class="other-login">
+      <a href="#"><img
+          class="facebookIcon"
+          src="{{'facebook-icon.png' | asset_url}}"
+          alt="Facebook Icon"></a>
+      <a href="#"><img
+          class="twitterIcon"
+          src="{{'twitter-icon.png' | asset_url}}"
+          alt="Twitter Icon"></a>
+      <a href="#"><img
+          class="googleIcon"
+          src="{{'google-icon.png' | asset_url}}"
+          alt="Google Icon"></a>
+    </div>
+    <div class="links">
+      <a href="#" class="frgetPass">
+        Forgot your password?
+      </a>
+      <span>Don't Have an Account?
+        <a href="#" clas="creatAcct">Create Account</a>
+      </span>
+    </div>
+  </div>
+</div>
+<!-- Cart Function Pop-up Div -->
+<div class="cart-value">
+  <div class="exit-btn">
+    <span class="material-symbols-outlined close-cart">
+      close
+    </span>
+  </div>
+  <div class="cart-counter">
+    <span>Cart&#8304;</span>
+  </div>
+  <div class="seperator"></div>
+
+  <!--Start of the Content of the Cart-->
+
+  <!--When Cart is Empty -->
+  {% comment %} <!--Make This Dynamic-->
+  <div class="cart-Empty"> {% render 'icon-cart-empty' %}
+  <span>Your cart is currently empty.
+  </span>
+  <a href="/collections/all" class="start-shop">Start Shopping</a>
+  </div> {% endcomment %}<!--Adding Something In Cart-->
+
+    <div class="cart-value-container"> <div class="cart-inside">
+      <div class="cart-value-img">
+        <img src="{{'shoe.jpg' | asset_url}}" alt="#">
+      </div>
+      <div class="cart-value-info">
+        <h2 class="itemTitle">
+          Addidas daadad</h2>
+        <p class="itemDesc">
+          Black & White</p>
+        <div class="counter-container">
+          <div class="counter">
+            <span class="material-symbols-outlined add">
+              add
+            </span>
+            <span class="item-number">1</span>
+            <span class="material-symbols-outlined remove">
+              remove
+            </span>
+          </div>
+          <span class="material-symbols-outlined delete">
+            delete
+          </span>
+        </div>
+      </div>
+      <div class="price-container">
+        <span class="Price">$122.50</span>
+      </div>
+    </div>
+  </div>
+  <div class="end-of-cart">
+    <div class="top-end">
+      <div class="total-text">
+        <h3>Total</h3>
+        <span>Tax included. Shipping calculated at checkout.</span>
+      </div>
+      <div class="total-number">
+        <span>$122.50</span>
+      </div>
+    </div>
+    <div class="bottom-end">
+      <a href="#" class="view-cart">View cart</a>
+      <a href="#" class="checkout">Checkout</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var toggle = document.querySelector('.toggle');
+    var navmenuDropdown = document.querySelector('.navmenu-dropdown');
+
+    toggle.addEventListener('click', function() {
+      if (navmenuDropdown.style.display === 'none') {
+        navmenuDropdown.style.display = 'block';
+      } else {
+        navmenuDropdown.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var login = document.querySelector('.person');
+    var exitlogin = document.querySelector('.close-login');
+    var loginfunction = document.querySelector('.login-function');
+    var cart = document.querySelector('.bag');
+    var exitcart = document.querySelector('.close-cart');
+    var cartfunction = document.querySelector('.cart-value');
+    var searchRight = document.querySelector('.search-right');
+    var searchLeft = document.querySelector('.search-left');
+    var exit = document.querySelector('.close-search');
+    var searchfunction = document.querySelector('.search-function');
+
+
+    function toggleCartFuction() {
+      if (cartfunction.style.display === 'none') {
+        cartfunction.style.display = 'flex';
+        cartfunction.classList.add('show');
+      } else {
+        cartfunction.style.display = 'none';
+        cartfunction.classList.remove('show');
+      }
+    }
+    function toggleLoginFunction() {
+      if (loginfunction.style.display === 'none') {
+        loginfunction.style.display = 'flex';
+      } else {
+        loginfunction.style.display = 'none';
+      }
+    }
+    function toggleSearchFunction() {
+      if (searchfunction.style.display === 'none') {
+        searchfunction.style.display = 'block';
+      } else {
+        searchfunction.style.display = 'none';
+      }
+    }
+
+    searchLeft.addEventListener('click', toggleSearchFunction);
+    searchRight.addEventListener('click', toggleSearchFunction);
+    exit.addEventListener('click', toggleSearchFunction);
+    cart.addEventListener('click', toggleCartFuction);
+    exitcart.addEventListener('click', toggleCartFuction);
+    login.addEventListener('click', toggleLoginFunction);
+    exitlogin.addEventListener('click', toggleLoginFunction);
+  });
+</script>
+
+
+{% schema %}
+  {
+    "name": "header",
+    "tag": "header",
+    "class": "header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }, {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Insert Menu"
+      }, {
+        "type": "color",
+        "id": "body_text",
+        "label": "Background Color",
+        "default": "#000000"
+      }
+    ]
+  }
+{% endschema %}

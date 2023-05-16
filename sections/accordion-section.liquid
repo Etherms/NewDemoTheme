@@ -1,0 +1,303 @@
+<style>
+  #imageTwo {
+    display: none;
+  }
+  #imageThree {
+    display: none;
+  }
+  #Accordion-Container {
+    width: 50%;
+    flex: 1.5;
+  }
+  .accordion-Section {
+    min-width: 380px;
+    background-color: #2B2A2A;
+    min-height: 418px;
+    display: flex;
+  }
+  .accordion-item {
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: none;
+  }
+  button.accordion-button {
+    font-size: 30px;
+    font-family: 'Roboto';
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  .accordion-button:focus {
+    border-color: none !important;
+    box-shadow: none !important;
+  }
+
+  .accordion-button:not(.collapsed) {
+    color: white;
+    background-color: #2B2A2A !important;
+    box-shadow: none !important;
+  }
+  button.accordion-button.collapsed {
+    background: #2B2A2A;
+    color: white;
+  }
+  .accordion-body {
+    background: #2B2A2A;
+    color: white;
+    font-size: 17px;
+    font-weight: 400;
+    padding-bottom: 33px;
+    line-height: 31px;
+  }
+  .accordion-button:after {
+    background-image: url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+  }
+  a.accordion-btn {
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 15px;
+    display: block;
+    font-size: 20px;
+    width: 126px;
+    white-space: nowrap;
+    border-radius: 30px;
+    margin-top: 16px;
+    font-weight: 500;
+  }
+  {% comment %}
+    .image-class {
+      width: 728px;
+      height: 420px;
+    }
+  {% endcomment %}
+  .accordion-img {
+    display: flex;
+    flex-direction: column;
+    /* min-width: 50%; */
+    width: 100%;
+    flex: 1;
+  }
+  .img-container {
+    width: 655px;
+  }
+  .accordion-item:last-of-type {
+    border-radius: 0;
+  }
+  .accordion-item:first-of-type {
+    border-radius: 0;
+  }
+  @media(max-width:1350px) {
+    #Accordion-Container {
+      flex: 1;
+    }
+  }
+  @media(max-width:1000px) {
+    #Accordion-Container {
+      flex: 0.5;
+    }
+  }
+  @media(max-width:800px) {
+    .accordion-Section {
+      flex-direction: column;
+      height: 1000px;
+      min-height: 0;
+    }
+    #Accordion-Container {
+      width: 100%;
+      min-height: 500px;
+    }
+    .accordion-img {
+      min-height: 498px;
+    }
+  }
+</style>
+
+
+<div class="accordion" id="Accordion-Container">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne">
+        Men's Shoes
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingOne"
+      data-bs-parent="#Accordion-Container">
+      <div class="accordion-body">
+        They come in a variety of styles, including dress shoes, athletic shoes, boots, and sandals, and are made from a range of materials such as leather, suede, and canvas. Men's shoes are an important part of a man's wardrobe and can make a significant impact on his overall style and appearance.
+        <a href="{{ section.settings.mensLink }}" class="accordion-btn button">Shop Now
+          <span class="material-symbols-outlined arrow-btn">
+            arrow_forward
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTwo"
+        aria-expanded="false"
+        aria-controls="collapseTwo">
+        Women's Shoes
+      </button>
+    </h2>
+    <div
+      id="collapseTwo"
+      class="accordion-collapse collapse"
+      aria-labelledby="headingTwo"
+      data-bs-parent="#Accordion-Container">
+      <div class="accordion-body">
+        Not only functional but also serve as a fashion statement. They can elevate an outfit, add a pop of color, or complement a specific style. With a vast array of designs, colors, and materials, women's shoes provide endless possibilities for self-expression and personal style.
+        <a href="{{ section.settings.womensLink }}" class="accordion-btn button">Shop Now
+          <span class="material-symbols-outlined arrow-btn">
+            arrow_forward
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseThree"
+        aria-expanded="false"
+        aria-controls="collapseThree">
+        Kid's Shoes
+      </button>
+    </h2>
+    <div
+      id="collapseThree"
+      class="accordion-collapse collapse"
+      aria-labelledby="headingThree"
+      data-bs-parent="#Accordion-Container">
+      <div class="accordion-body">
+        Kids shoes are created to ensure the well-being of children's feet as they grow. They offer comfort, support, and protection, all while being available in various sizes, colors, and styles. With a plethora of playful, colorful designs and more formal styles, kids shoes are not only practical but also a vital aspect of a child's fashion.
+        <a href="{{ section.settings.kidsLink }}" class="accordion-btn button">Shop Now
+          <span class="material-symbols-outlined arrow-btn">
+            arrow_forward
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-img">
+  <div class="img-container">
+    <div class="image-class" id="imageOne"></div>
+    <div class="image-class" id="imageTwo"></div>
+    <div class="image-class" id="imageThree"></div>
+  </div>
+</div>
+
+<style>
+  #imageOne {
+    background-image: url('{{ section.settings.image1 | img_url: '1200x1200' }}');
+  }
+  #imageTwo {
+    background-image: url('{{ section.settings.image2 | img_url: '1200x1200' }}');
+  }
+  #imageThree {
+    background-image: url('{{ section.settings.image3 | img_url: '1200x1200' }}');
+  }
+
+  .img-container {
+    width: 100%;
+    height: 100%;
+  }
+  .image-class {
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+</style>
+
+<script>
+  var collapseOne = document.getElementById("collapseOne");
+  var imageOne = document.getElementById("imageOne");
+  var collapseTwo = document.getElementById("collapseTwo");
+  var imageTwo = document.getElementById("imageTwo");
+  var collapseThree = document.getElementById("collapseThree");
+  var imageThree = document.getElementById("imageThree");
+
+
+  collapseOne.addEventListener("shown.bs.collapse", function() {
+    imageOne.style.display = "block";
+    imageTwo.style.display = "none"
+    imageThree.style.display = "none"
+  });
+  collapseThree.addEventListener("shown.bs.collapse", function() {
+    imageThree.style.display = "block";
+    imageOne.style.display = "none"
+    imageTwo.style.display = "none"
+  });
+  collapseTwo.addEventListener("shown.bs.collapse", function() {
+    imageTwo.style.display = "block";
+    imageOne.style.display = "none";
+    imageThree.style.display = "none"
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Accordion Section",
+    "class": "accordion-Section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "body_text",
+        "label": "Background Color"
+      },
+      {
+        "type": "image_picker",
+        "id": "image1",
+        "label": "Set Men's Shoes Image"
+      },
+      {
+        "type": "url",
+        "id": "mensLink",
+        "label": "Provide Men's Shoes link"
+      },
+      {
+        "type": "image_picker",
+        "id": "image2",
+        "label": "Set Women's Shoes Image"
+      }, {
+        "type": "url",
+        "id": "womensLink",
+        "label": "Provide Women's Shoes link"
+      }, {
+        "type": "image_picker",
+        "id": "image3",
+        "label": "Set Kid's Shoes Image"
+      }, {
+        "type": "url",
+        "id": "kidsLink",
+        "label": "Provide Kid's Shoes link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Accordion Section"
+      }
+
+    ]
+  }
+{%endschema%}

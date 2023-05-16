@@ -1,0 +1,103 @@
+{
+  "current": {
+    "social_facebook_link": "https:\/\/facebook.com\/login",
+    "social_instagram_link": "https:\/\/instagram.com\/login",
+    "social_youtube_link": "https:\/\/youtube.com",
+    "social_twitter_link": "https:\/\/twitter.com",
+    "social_snapchat_link": "https:\/\/snapchat.com",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "title": "Sapatoes",
+          "menu": "main-menu",
+          "body_text": "#ffffff"
+        }
+      },
+      "featured-collection": {
+        "type": "featured-collection",
+        "settings": {
+          "title": "",
+          "collection": "shoes"
+        }
+      },
+      "upper-footer": {
+        "type": "upper-footer",
+        "blocks": {
+          "e802d6a3-60d5-4a3c-80e5-7c5bf9334d9c": {
+            "type": "quick_links",
+            "settings": {
+              "quick_links": "shop"
+            }
+          },
+          "aa127ada-c4d0-414e-b5d1-97e9f2452345": {
+            "type": "quick_links",
+            "settings": {
+              "quick_links": "about"
+            }
+          },
+          "95eb058c-fe7b-4536-96ab-015107d23a51": {
+            "type": "quick_links",
+            "settings": {
+              "quick_links": "account"
+            }
+          },
+          "77b7f1ef-9104-4a74-beca-d4c370b7954f": {
+            "type": "description",
+            "settings": {}
+          }
+        },
+        "block_order": [
+          "e802d6a3-60d5-4a3c-80e5-7c5bf9334d9c",
+          "aa127ada-c4d0-414e-b5d1-97e9f2452345",
+          "95eb058c-fe7b-4536-96ab-015107d23a51",
+          "77b7f1ef-9104-4a74-beca-d4c370b7954f"
+        ],
+        "settings": {
+          "brandName": "Sapatoes",
+          "payment_enable": true
+        }
+      },
+      "middle-footer": {
+        "type": "middle-footer",
+        "blocks": {
+          "8244face-eae3-4e25-8ef3-aedb600d78b2": {
+            "type": "social_media_links",
+            "settings": {}
+          }
+        },
+        "block_order": [
+          "8244face-eae3-4e25-8ef3-aedb600d78b2"
+        ],
+        "settings": {
+          "storename": "Sapatoes",
+          "allow_social_media": true,
+          "body_text": "#000000"
+        }
+      },
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "blocks": {
+          "cdfd5f4f-4252-49b3-8a1e-8f725a715aed": {
+            "type": "announcement",
+            "settings": {
+              "email": false,
+              "emailText": "Shoes@gmail.com",
+              "announcement-text": "FREE DELIVERY ON SELECTED ITEMS",
+              "location": false,
+              "locationText": "Sa giidli17, M. Manila",
+              "text_alignment": "center",
+              "color_text": "#ffffff",
+              "background_color": "linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(18, 18, 18, 1) 97%)"
+            }
+          }
+        },
+        "block_order": [
+          "cdfd5f4f-4252-49b3-8a1e-8f725a715aed"
+        ],
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
+}

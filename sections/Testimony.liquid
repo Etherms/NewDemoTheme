@@ -1,0 +1,155 @@
+<style>
+  .testimonysection {
+    min-width: 380px;
+    height: 534px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .testimony-tittle {
+    margin-bottom: 30px;
+  }
+  .testimony-container {
+    width: 80vw;
+    height: 335px;
+    background: linear-gradient(180deg, rgba(43, 42, 42, 1), rgba(26, 26, 26, 1) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1% 12%;
+    border-radius: 47px
+  }
+  p.testimony {
+    font-size: 17px;
+    text-align: center;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    line-height: 2;
+    margin-top: 8%;
+  }
+  h3.cstumer-testimony {
+    margin-top: 30px;
+    font-size: 32px;
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 500;
+  }
+  .quotation {
+    position: absolute;
+  }
+  .quotation.f-quoute {
+    top: 154px;
+    left: 184px;
+  }
+  .quotation.s-quoute {
+    bottom: 85px;
+    right: 205px;
+  }
+  @media(max-width:960px) {
+    .quotation.f-quoute {
+      left: 124px;
+    }
+    .quotation.s-quoute {
+      bottom: 85px;
+      right: 124px;
+    }
+  }
+  @media(max-width:790px) {
+    p.testimony {
+      margin-top: 4%;
+    }
+  }
+  @media(max-width:670px) {
+    h3.cstumer-testimony {
+      margin-top: -4px;
+    }
+  }
+  @media(max-width:590px) {
+    .testimony-container {
+      height: 400px;
+    }
+    .testimony-tittle {
+      margin-bottom: 11px;
+    }
+    p.testimony {
+      margin-top: 11%;
+    }
+    .quotation.s-quoute {
+      bottom: 56px;
+      right: 81px;
+    }
+    .quotation.f-quoute {
+      top: 109px;
+      left: 79px;
+    }
+  }
+  @media(max-width:481px) {
+    .testimonysection {
+      height: 586px;
+      justify-content: flex-start;
+    }
+    .testimony-tittle {
+      margin-top: 22px;
+    }
+    .testimony-container {
+      height: 480px;
+    }
+  }
+  @media(max-width:389px) {
+    .testimonysection {
+      height: 610px;
+    }
+    .testimony-container {
+      height: 500px;
+      padding: 1% 5%;
+    }
+    .quotation.f-quoute {
+      top: 94px;
+      left: 65px;
+    }
+    .quotation.s-quoute {
+      bottom: 56px;
+      right: 63px;
+    }
+
+  }
+</style>
+<div class="testimony-tittle">
+  <h1>Our Testimony</h1>
+</div>
+<div class="quotation f-quoute">
+  {% render 'fQuote' %}
+</div>
+
+<div class="quotation s-quoute">
+  {% render 'sQuote' %}
+</div>
+
+<div class="testimony-container">
+  <p class="testimony">The item is in a great quality and is shipped in the wonderful presentation box. The little brooches are needed to be removed before washing. As far as softness goes, IMHO, I've seen softer ones. I would definitely would by again if they had different color patterns. Not everyone is so big on pastel pink.</p>
+  <h3 class="cstumer-testimony">-Vryan</h3>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Testimony Section",
+    "class": "testimonysection",
+    "settings": [
+      {
+        "type": "color",
+        "id": "body_text",
+        "label": "Background Color"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Testimony Section"
+      }
+
+    ]
+  }
+{%endschema%}

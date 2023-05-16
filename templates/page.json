@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "banner": {
+      "type": "contact-us",
+      "settings": {
+        "emailAdd": "edsonhermosa2000@gmail.com",
+        "locationUrl": "https:\/\/www.google.com\/maps\/place\/Ewan+street\/data=!4m7!3m6!1s0x4ef368ae211eee6b:0xdcf8312d5b7b7218!8m2!3d12.7335786!4d121.8959892!16s%2Fg%2F11shpyy6r3!19sChIJa-4eIa5o804RGHJ7Wy0x-Nw?authuser=0&hl=en&rclk=1",
+        "emailUrl": "mailto:Sapatoes69@gmail.com",
+        "phoneUrl": "tel:09000000000"
+      }
+    },
+    "b7483d11-8c01-40e7-a377-1dc4b0320075": {
+      "type": "lineSection",
+      "settings": {
+        "body_text": ""
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "b7483d11-8c01-40e7-a377-1dc4b0320075"
+  ]
+}

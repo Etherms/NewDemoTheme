@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "main": {
+      "type": "about-us",
+      "settings": {
+        "header_image": "shopify:\/\/shop_images\/jordan.png",
+        "image1": "shopify:\/\/shop_images\/ForceFields-image.webp",
+        "image2": "shopify:\/\/shop_images\/IMG_1745-2.webp",
+        "image3": "shopify:\/\/shop_images\/shoe-odor.webp",
+        "image4": "shopify:\/\/shop_images\/weightlifting-shoes-featured.webp"
+      }
+    },
+    "301ef166-7145-47f2-bef1-a6d156d120ca": {
+      "type": "Store-perks",
+      "blocks": {
+        "b44b5aad-68cf-4105-8944-5cd3d15a7d5a": {
+          "type": "delivery",
+          "settings": {}
+        },
+        "d95e57a4-5de4-4b4e-9859-1b35eef7a314": {
+          "type": "payment",
+          "settings": {}
+        },
+        "73e8d3f9-e265-446f-a00a-36eb8c64c551": {
+          "type": "support",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "b44b5aad-68cf-4105-8944-5cd3d15a7d5a",
+        "d95e57a4-5de4-4b4e-9859-1b35eef7a314",
+        "73e8d3f9-e265-446f-a00a-36eb8c64c551"
+      ],
+      "settings": {
+        "body_text": ""
+      }
+    },
+    "e10e92a7-be84-45c8-bc16-27a2e37fe696": {
+      "type": "lineSection",
+      "settings": {
+        "body_text": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "301ef166-7145-47f2-bef1-a6d156d120ca",
+    "e10e92a7-be84-45c8-bc16-27a2e37fe696"
+  ]
+}

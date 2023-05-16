@@ -1,0 +1,359 @@
+<style>
+  .contactUsForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 55px;
+    padding-bottom: 60px;
+    background-color: #F6F6F3;
+    min-width: 380px;
+  }
+  .outside-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 33px;
+  }
+  p.contact-desc {
+    text-align: center;
+}
+  .contact-us-form {
+    display: flex;
+    background-color: #040404;
+    border-radius: 10px;
+    width: 80vw;
+    box-shadow: 0 0 10px 0px #040404;
+    min-height: 470px;
+  }
+  h1.contact-title {
+    margin-bottom: 13px;
+  }
+  .left-contact {
+    background: rgb(255, 255, 255);
+    color: #040404;
+    border-radius: 10px;
+    padding: 25px;
+    flex: 1;
+  }
+  .left-header {
+    margin-top: 10px;
+  }
+  h2 {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .left-inside p {
+    font-family: 'Montserrat';
+    font-size: 15px;
+    font-weight: 550;
+    line-height: 20px;
+    margin: 0;
+}
+  .contact-location {
+    margin-top: 65px;
+  }
+  .contact-location,
+  .contact-phone,
+  .contact-email {
+    display: flex;
+    margin-bottom: 43px;
+  }
+  .contact-location span,
+  .contact-phone span,
+  .contact-email span {
+    padding-right: 16px;
+  }
+
+  .right-contact {
+    padding: 35px 35px 0 50px;
+    width: 55%;
+    flex: 2;
+    position: relative;
+  }
+  button {
+    position: absolute;
+    bottom: 54px;
+    right: 7%;
+    background: none;
+    color: white;
+    border: 1px solid white;
+    padding: 17px 12px;
+    border-radius: 27px;
+  }
+  button.button.contact-us-button {
+    position: absolute;
+    padding: 10px 13px;
+}
+
+  .input-inline,
+  .input-beside {
+    display: flex;
+    align-items: center;
+    margin-bottom: 55px;
+  }
+  .input.form__group.field {
+    width: 48%;
+  }
+  .input.form__group.field.l-input,
+  .input.form__group.field.s-input {
+    margin-left: 4%;
+  }
+
+  textarea {
+    resize: none;
+  }
+  .textarea.form__group.field {
+    width: 100%;
+  }
+
+  .left-inside a {
+    text-decoration: none;
+    color: black;
+    display: inline-flex;
+}
+  /* Sheesh */
+
+  .form__group {
+    position: relative;
+    padding: 15px 0 0;
+    width: 50%;
+  }
+
+  .form__field {
+    font-family: inherit;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.1rem;
+    color: rgb(255, 255, 255);
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form__field::placeholder {
+    color: transparent;
+  }
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: 1.2rem;
+    cursor: text;
+    top: 26px;
+  }
+
+  .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #9b9b9b;
+  }
+
+  .form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 500;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #119DA4, #13505B);
+    border-image-slice: 1;
+  }
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #119DA4;
+    font-weight: 700;
+  }
+
+  /* reset input */
+  .form__field:required,
+  .form__field:invalid {
+    box-shadow: none;
+  }
+
+
+  @media(max-width:900px) {
+    .contact-us-form {
+    display: flex;
+    flex-direction: column;
+    width:90vw;
+
+}
+.outside-container{
+  margin-top: 35px;
+}
+.left-contact {
+    border-radius: 10px 10px 0 0;
+}
+.right-contact {
+    width:100%;
+    min-height: 550px;
+    border-radius:10px
+}
+form{
+   width:100%;
+}
+.input-inline, .input-beside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+    width:100%;
+}
+.input.form__group.field {
+    width: 100%;
+    margin-bottom: 8px;
+}
+.input.form__group.field.l-input, .input.form__group.field.s-input {
+    margin-left: 0;
+}
+.input.form__group.field.s-input {
+    margin-bottom: 66px;
+}
+  }
+</style>
+
+{% assign emailAdd = section.settings.emailAdd %}
+<div class="outside-container">
+  <h1 class="contact-title">Contact Us</h1>
+  <p class="contact-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quos?</p>
+</div>
+<div class="contact-us-form">
+  <div class="left-contact">
+    <div class="left-header">
+      <h2>Contact Information</h2>
+      <p>Fill up the form and our Team will get back to you within 24 hours.</p>
+    </div>
+    <div class="contact-location left-inside">
+      <a href="{{ section.settings.locationUrl }}">
+        <span class="material-symbols-outlined">
+          location_on
+        </span>
+        <p>Ewan street, Brgy Dimakita</p>
+    </a>
+      </div>
+      <div class="contact-phone left-inside">
+        <a href="{{ section.settings.phoneUrl }}">
+          <span class="material-symbols-outlined">
+            call
+          </span>
+          <p>(+63) 912-536-3214</p>
+        </a>
+      </div>
+      <div class="contact-email left-inside">
+        <a href="{{ section.settings.emailUrl }}">
+          <span class="material-symbols-outlined">
+            mail
+          </span>
+          <p>Sapatoes69@gmail.com</p>
+        </a>
+      </div>
+
+    </div>
+    <div class="right-contact">
+
+      <form onsubmit="sendEmail(); reset(); return false;">
+        <div class="input-inline">
+          <div class="input form__group field r-input">
+            <input
+              type="text"
+              placeholder="Name"
+              id="name"
+              class="form__field"
+              required>
+            <label for="name" class="label_name form__label">Name</label>
+          </div>
+          <div class="input form__group field l-input">
+            <input
+              type="email"
+              placeholder="Email"
+              id="email"
+              class="form__field"
+              required>
+            <label for="email" class="label_email form__label">Email</label>
+          </div>
+        </div>
+        <div class="input-beside">
+          <div class="input form__group field p-input">
+            <input
+              type="tel"
+              placeholder="Phone number"
+              id="phone"
+              class="form__field"
+              required>
+            <label for="phone" class="label_phone form__label">Phone</label>
+          </div>
+          <div class="input form__group field s-input">
+            <input
+              type="text"
+              placeholder="Subject"
+              id="subject"
+              class="form__field"
+              required>
+            <label for="subject" class="label_subj form__label">Subject</label>
+          </div>
+        </div>
+        <div class="textarea form__group field">
+          <input
+            id="message"
+            class="form__field"
+            rows="1"
+            cols="50"
+            placeholder="Message" required></input>
+
+        <label for="textarea" class="label_textarea form__label">Message</label>
+      </div>
+      <button type="submit" class="button contact-us-button">Send Message <span class="material-symbols-outlined arrow-btn"> arrow_forward</span></button>
+    </form>
+  </div>
+</div>
+
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+  function sendEmail() {
+    Email.send({
+      SecureToken: "75828b76-2847-4ac6-9a6d-3d625eb3a39a",
+      To: "{{ emailAdd }}",
+      From: "edsonhermosa2000@gmail.com",
+      Subject: "New Contact Form Inquiry",
+      Body: "Name: " + document.getElementById("name").value + "<br> Email: " + document.getElementById("email").value + "<br> Phone: " + document.getElementById("phone").value + "<br> Subject: " + document.getElementById("subject").value + "<br> Message: " + document.getElementById("message").value
+    }).then(message => alert(message));
+  }
+</script>
+
+
+{% schema %}
+  {
+    "name": "Contact-us Section",
+    "class": "contactUsForm",
+    "settings": [
+      {
+        "type": "text",
+        "id": "emailAdd",
+        "label": "Email Address to send the contact us form to:"
+      }, {
+        "type": "url",
+        "id": "locationUrl",
+        "label": "Provide Location link"
+      }, {
+        "type": "url",
+        "id": "emailUrl",
+        "label": "Provide Email Address link"
+      }, {
+        "type": "url",
+        "id": "phoneUrl",
+        "label": "Provide Phone Number"
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Contact-us Section"
+      }
+
+    ]
+  }
+{%endschema%}

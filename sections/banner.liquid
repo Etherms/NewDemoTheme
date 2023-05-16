@@ -1,0 +1,175 @@
+
+
+<style>
+  .swiper .pause, .swiper .play{
+    z-index: 200;
+    position: absolute;
+    object-fit: scale-down;
+    bottom: 6px;
+    right: calc(100vw - 55vw);
+    color: white;
+    cursor: pointer;
+    text-shadow: 0px 0px 4px rgba(0,0,0,0.8);
+  }
+  .swiper .play{
+    display: none;
+  }
+  .swiper-image{
+    width: 100%;
+  }
+  .swiper-fade .swiper-slide-active, .swiper-fade .swiper-slide-active .swiper-slide-active {
+    pointer-events: none !important;
+}
+
+
+@media (max-width:960px) {
+  .swiper .pause, .swiper .play{
+    right: calc(100vw - 56vw);
+  }
+}  
+@media (max-width:790px) {
+  .swiper .pause, .swiper .play{
+    right: calc(100vw - 57vw);
+  }
+}  
+@media (max-width:690px) {
+  .swiper .pause, .swiper .play{
+    right: calc(100vw - 59vw);
+  }
+}  
+@media (max-width:590px) {
+  .swiper .pause, .swiper .play{
+    right: calc(100vw - 60vw);
+  }
+}  
+@media (max-width:490px) {
+  .swiper .pause, .swiper .play{
+    right: calc(100vw - 63vw);
+  }
+}  
+@media (max-width:390px) {
+  .swiper .pause, .swiper .play{
+    right: calc(100vw - 66vw);
+  }
+}  
+</style>
+
+<div class=" swiper">
+  <div class="overlay">
+    {% if section.settings.banner-title != blank %}
+      <h2 class="banner-title">{{ section.settings.banner-title }}</h2>
+    {% endif %}
+    {% if section.settings.desc-banner != blank %}
+      <p class="banner-desc">{{ section.settings.desc-banner }}<p>
+    {% endif %}
+      <a href="{{ section.settings.shop_link }}" class="shop-btn button">Shop Now<span class="material-symbols-outlined arrow-btn">
+        arrow_forward
+        </span></a>
+  </div>
+  <div class="swiper-wrapper">
+    <div class="swiper-slide slide one">
+    </div>
+    <div class="swiper-slide slide two">
+    </div>
+    <div class="swiper-slide slide three">
+    </div>
+    <div class="swiper-slide slide four">
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+  <span class="material-symbols-outlined pause">
+pause
+</span>
+    <span class="material-symbols-outlined play">
+      play_arrow
+    </span>
+</div>    
+
+<script>
+  window.addEventListener('load', function() {
+  var swiper = new Swiper(".swiper", {
+    direction: 'horizontal',
+    slidesPerGroup: 1,
+    loop: true,
+    spaceBetween: 30,
+    effect:'fade',
+    fadeEffect:{
+      crossFade:true,
+    },
+    autoplay:{
+      delay:2000,
+      disableOnInteraction:false,
+      ease: 'crossFade',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    }
+  });
+
+  var pauseButton = document.querySelector('.pause');
+  var playButton = document.querySelector('.play');
+
+  pauseButton.addEventListener('click', function() {
+    swiper.autoplay.stop();
+    pauseButton.style.display = "none";
+    playButton.style.display = "block";
+  });
+
+  playButton.addEventListener('click', function() {
+    swiper.autoplay.start();
+    playButton.style.display = "none";
+    pauseButton.style.display = "block";
+  });
+});
+</script>
+
+
+{% schema %}
+  {
+    "name": "Banner",
+    "class": "banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Set First Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Set Second Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_3",
+        "label": "Set Third Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_4",
+        "label": "Set Fourth Image"
+      },
+      {
+        "type": "text",
+        "id": "banner-title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "desc-banner",
+        "label": "Banner Description"
+      },{
+        "type": "url",
+        "id": "shop_link",
+        "label": "Button link"
+      }
+      
+    ],
+    "presets": [
+      {
+        "name": "Banner"
+      }
+    ]
+}
+{% endschema %}

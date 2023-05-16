@@ -1,0 +1,132 @@
+<style>
+  div#searchresults {
+    margin-top: 75px;
+  }
+
+  form.searchbar-results {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 10px; */
+    padding-top: 14px;
+  }
+
+
+
+  select#sort-by {
+    border: 1px solid #8b8b8b;
+  }
+  .list {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+  }
+  .search-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #7c7b7b;
+    margin-right: 23px;
+    margin-bottom: 23px;
+    padding: 20px;
+    transition: transform 1s;
+  }
+  li.search-list:hover {
+    transform: scale(1.1);
+  }
+  .result-image {}
+  .result-image img {
+    max-width: 282px;
+    max-height: 309px;
+  }
+  .searchresult-title {
+    order: 2;
+  }
+
+  .searchresult-title a {
+    text-decoration: none;
+    color: black;
+  }
+  .searchcontent {
+    order: 3;
+  }
+  input[type=text]#result-q {
+    font-size: 24px;
+  }
+  input#result-q {
+    width: 500px;
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+  }
+
+  .searchbar-results input[type="submit"] {
+    /* color: black; */
+    /* width: 10px; */
+    width: 102px !important;
+    height: 52px;
+    border: 1px solid black;
+    background: white;
+    color: black;
+    border-radius: 34px;
+  }
+
+  .searchbar-results input[type="submit"]:hover {
+    background: black;
+    color: white;
+    border-color: white;
+  }
+</style>
+
+
+<div id="searchresults">
+  <form
+    class="searchbar-results"
+    action="/search"
+    method="get">
+    <p><input
+        type="text"
+        name="q"
+        value="{{search.terms  | escape}}"
+        id="result-q" /> <input
+        type="submit"
+        value="Search"
+        style="width:100px" /></p>
+  </form>
+
+  {% if search.performed %}
+
+    {% paginate search.results by 10 %}
+
+      {% if search.results == empty %}
+        <p>Your search for "{{ search.terms | escape }}" did not yield any results</p>
+      {% else %}
+
+        <ol class="list">
+          {% for item in search.results %}
+            <li class="search-list">
+              <h3 class="searchresult-title">{{ item.title | link_to: item.url }}</h3>
+              {% if item.featured_image %}
+                <div class="result-image">
+                  <a href="{{item.url}}" title="">{{ item.featured_image | product_img_url: '700x700' | img_tag }}</a>
+                </div>
+              {% endif %}
+              <span class="searchcontent">{{ item.price | money }}</span>
+              <div style="clear:left"></div>
+            </li>
+          {% endfor %}
+        </ol>
+
+      {% endif %}
+
+
+      <p>{{ paginate | default_pagination }}</p>
+
+    {% endpaginate %}
+
+  {% endif %}
+
+
+
+</div>

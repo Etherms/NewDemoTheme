@@ -1,0 +1,123 @@
+<style>
+    .breakswiper{
+
+        background-color: black;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        overflow:hidden;
+    }
+    .breakswiper .swiper-wrapper{
+        display: flex;
+        align-items: center;
+    }
+    .breakswiper .swiper-slide{
+        color: white;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+    }
+    .breakswiper .swiper-slide span{
+        padding-right: 5px;
+    }
+
+  .first-slide{
+        max-width:153px !important;
+    margin-right:50px !important;
+    }  
+    .second-slide{
+        width:117px !important;
+        margin-right: 50px !important;
+    }
+    .third-slide{
+        width:170px !important;
+        margin-right: 50px !important;
+    }
+</style>
+
+
+<!-- Swiper -->
+<div class="breakswiper">
+<div class="swiper-wrapper">
+  <div class="swiper-slide first-slide"> <span class="material-symbols-outlined">
+    footprint
+    </span> Essential Comfort</div>
+  <div class="swiper-slide second-slide"> <span class="material-symbols-outlined">
+    star_rate
+    </span>High Quality</div>
+  <div class="swiper-slide third-slide"> <span class="material-symbols-outlined">
+    auto_fix
+    </span>Unique and Aesthetic</div>
+    <div class="swiper-slide first-slide"> <span class="material-symbols-outlined">
+        footprint
+        </span> Essential Comfort</div>
+      <div class="swiper-slide second-slide"> <span class="material-symbols-outlined">
+        star_rate
+        </span>High Quality</div>
+      <div class="swiper-slide third-slide"> <span class="material-symbols-outlined">
+        auto_fix
+        </span>Unique and Aesthetic</div>
+        <div class="swiper-slide first-slide"> <span class="material-symbols-outlined">
+            footprint
+            </span> Essential Comfort</div>
+          <div class="swiper-slide second-slide"> <span class="material-symbols-outlined">
+            star_rate
+            </span>High Quality</div>
+          <div class="swiper-slide third-slide"> <span class="material-symbols-outlined">
+            auto_fix
+            </span>Unique and Aesthetic</div>
+            <div class="swiper-slide first-slide"> <span class="material-symbols-outlined">
+                footprint
+                </span> Essential Comfort</div>
+              <div class="swiper-slide second-slide"> <span class="material-symbols-outlined">
+                star_rate
+                </span>High Quality</div>
+              <div class="swiper-slide third-slide"> <span class="material-symbols-outlined">
+                auto_fix
+                </span>Unique and Aesthetic</div>
+                <div class="swiper-slide first-slide"> <span class="material-symbols-outlined">
+                    footprint
+                    </span> Essential Comfort</div>
+                  <div class="swiper-slide second-slide"> <span class="material-symbols-outlined">
+                    star_rate
+                    </span>High Quality</div>
+                  <div class="swiper-slide third-slide"> <span class="material-symbols-outlined">
+                    auto_fix
+                    </span>Unique and Aesthetic</div>
+</div>
+</div>
+
+
+<script>
+    window.addEventListener('load', function() {
+      var swiper = new Swiper(".breakswiper", {
+        direction: 'horizontal',
+        slidesPerGroup: 7,
+        {% comment %} loop: true, {% endcomment %}
+        spaceBetween:2
+      });
+    });
+  </script>
+
+
+{% schema %}
+  {
+    "name": "BreakSection",
+    "tag": "section",
+    "class": "breaksection",
+    "settings": [
+      {
+        "type": "color_background",
+        "id": "background",
+        "label": "Background"
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Break Section"
+      }
+    ]
+  }
+{% endschema %}

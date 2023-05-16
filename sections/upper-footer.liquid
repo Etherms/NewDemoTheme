@@ -1,0 +1,192 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900 &family=Roboto:ital, wght@0, 100;0, 300;0, 400;0, 500;0, 700;0, 900;1, 100;1, 300;1, 400;1, 500;1, 700;1, 900&display=swap');
+
+  /* footer one */
+  .upper-footer {
+    min-width: 380px;
+    padding: 20px 25px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    background-color: #111111;
+  }
+  .top-upper-footer h1 {
+    font-family: Oswald, "sans-serif";
+    font-size: 42px;
+    font-weight: 600;
+  }
+  .lower-upper-footer {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 36px;
+  }
+  .lower-upper-footer > * {
+    max-width: 300px;
+  }
+  .navigation {
+    margin-bottom: 30px;
+  }
+
+  .navigation ul {
+    list-style: none;
+    padding-left: 0;
+
+  }
+
+  .navigation h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+  }
+  .navigation ul a {
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    font-size: 19px;
+    font-weight: 100;
+    text-decoration: none;
+    text-align: justify;
+    line-height: 50px;
+  }
+  .navigation ul a:hover {
+    border-bottom: 1px solid white;
+  }
+
+  .desc-navigation {
+    margin-bottom: 30px;
+  }
+  .desc-navigation ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .desc-navigation h3 {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+  }
+  .desc-navigation ul a {
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    font-size: 19px;
+    font-weight: 100;
+  }
+
+  ul.list.list-payment {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+  }
+  li.list-payment__item {
+    padding: 10px;
+  }
+  svg.icon.icon--full-color {
+    cursor: pointer;
+  }
+
+
+
+  @media(max-width:600px) {
+    .lower-upper-footer {
+      flex-direction: column;
+    }
+    .navigation {
+      padding-left: 30px;
+    }
+    .desc-navigation {
+      padding-left: 30px;
+    }
+
+    ul.list.list-payment {
+      justify-content: flex-start;
+    }
+    li.list-payment__item {
+      padding: 2px;
+    }
+  }
+</style>
+
+
+{% assign text = section.settings.brandName %}
+<div class="top-upper-footer">
+  <h1>{{ text }}</h1>
+</div>
+<div class="lower-upper-footer">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'quick_links' %}
+      <div class="navigation">
+        <h3 class="nav-title">{{ block.settings.quick_links.title }}</h3>
+        <ul>
+          {% for link in block.settings.quick_links.links %}
+            <li>
+              <a>{{ link.title | link_to: link.url }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% when 'description' %}
+      <div class="desc-navigation">
+        <h3 class="desc-nav-title">COMPANY</h3>
+        <ul>
+          <li><a>Our company is a shoe store offering a wide range of stylish and comfortable footwear for all ages and occasions.</a></li>
+        </ul>
+      </div>
+    {% endcase %}
+  {% endfor %}
+</div>
+<div class="under-footer-container" style="min-width:380px;">
+  {% if section.settings.payment_enable %}
+    <div class="footer__payment">
+      <ul class="list list-payment" role="list">
+        {% for type in shop.enabled_payment_types %}
+          <li class="list-payment__item">
+            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Upper Footer",
+    "class": "upper-footer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brandName",
+        "label": "Enter Brand Name",
+        "default": "Sapatoes"
+      }, {
+        "type": "checkbox",
+        "id": "payment_enable",
+        "default": true,
+        "label": "Show Payment icons"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Quick Links",
+        "type": "quick_links",
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "quick_links",
+            "label": "Enter Menu"
+          }
+        ]
+      }, {
+        "name": "description",
+        "type": "description"
+      }
+    ]
+  }
+{% endschema %}

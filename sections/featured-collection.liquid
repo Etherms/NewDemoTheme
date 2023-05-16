@@ -1,0 +1,210 @@
+
+{% assign background = section.settings.background  %}
+{%assign title = section.settings.title %}
+{%assign collectionDesc = section.settings.colDesc %}
+<style>
+  .featured_section{
+    background:{{background}};
+  }
+  .{{ section.id}} .swiper-slide img{
+    height:300px
+  }
+
+  /* Featured Section */
+.featured_section{
+  min-width: 380px;
+}
+.background-color{
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+.featured_section .swiper-pagination {
+  position: relative !important;
+}
+
+.featured_section .swiper-slide{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding-top: 50px;
+}
+.product-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featured_section .swiper-pagination-clickable .swiper-pagination-bullet {     /*Pagination color*/
+  background: rgb(255, 255, 255);
+}
+
+.background-color{
+  text-align:center;
+}
+
+.featured_section span.swiper-pagination-bullet.swiper-pagination-bullet-active {     /*Pagination color*/
+  background: rgb(31, 31, 31);
+}
+p.f-section-desc {
+    font-size: 20px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    color: white;
+}
+
+.f-collection {
+    font-weight: 500;
+    font-size: 31px;
+    font-family: 'Roboto';
+    color: white;
+}
+.featured_section .swiper-slide img {
+    border-radius: 19px;
+    cursor: pointer;
+}
+.product-price {
+    font-size: 18px;
+    font-weight: 400;
+    color: #dddddd;
+}
+h2.product-title {
+    font-size: 36px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    color: white;
+}
+
+a.featured-button.button {
+    text-decoration: none;
+    color: white;
+    font-size: 21px;
+    font-weight: 400;
+    font-family: 'Roboto';
+    border: 1px solid white;
+    margin: 0px auto;
+    padding: 10px 20px;
+    width: 146px;
+    display: flex;
+    align-items: center;
+}
+.featured-arrow-btn{
+  top: 13% !important;
+    right: 8% !important;
+}
+a.featured-button.button:hover {
+    width: 170px;
+}
+.swiper-slide img:nth-of-type(2) {
+    display: none;
+}
+
+.swiper-slide:hover img:nth-of-type(1) {
+    display: none;
+}
+.swiper-slide:hover img:nth-of-type(2) {
+    display: block;
+}
+/* Finished Featured Section */
+</style>
+
+
+<div class="background-color" style="background: {{ background }} ">
+  <h3 class="f-collection">{{ title }}<h3>
+  <p class="f-section-desc">{{ collectionDesc }}</p>
+<div class="{{ section.id }} container overflow-hidden ">
+  <div class="swiper-wrapper f-wrapper">
+    {% for product in section.settings.collection.products %}
+      <div class="swiper-slide">
+        {% for image in product.images %}
+          <img src="{{ image.src | product_img_url: 'large' }}" alt="{{ product.title }}"  loading="lazy"/>
+        {% endfor %}
+        <div class="product-info">
+          <h2 class="product-title">{{ product.title }}</h2>
+          <p class="product-price">{{ product.price | money }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+<a href="{{ section.settings.seeMore }}" class="featured-button button">Show More<span class="material-symbols-outlined arrow-btn featured-arrow-btn">
+  arrow_forward
+  </span></a>
+</div>
+
+<script>
+  window.addEventListener('load', function() {
+    var swiper = new Swiper('.{{section.id}}', {
+      direction: 'horizontal',
+      slidesPerView: 3,
+      spaceBetween: 20,
+      pagination: {
+        el: '.{{section.id}} .swiper-pagination',
+        clickable: true
+      },
+      breakpoints: {
+        100: {
+          slidesPerView: 1
+        },
+        515:{
+          slidesPerView:2
+        },
+        990:{
+          slidesPerView:3
+        }
+      }
+    });
+  });
+</script>
+<script>
+  const featuredButton = document.querySelector('.featured-button');
+featuredButton.addEventListener('mouseover', showArrowButton);
+featuredButton.addEventListener('click', showArrowButton);
+function showArrowButton() {
+  const arrowButton = document.querySelector('.featured-arrow-btn');
+  arrowButton.style.display = 'nonen';
+}
+
+
+</script>
+
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "class": "featured_section",
+
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Add a title"
+      }, {
+        "type": "textarea",
+        "id": "colDesc",
+        "label": "Add a description on the section"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Select a Collection"
+      },
+      {
+        "type": "color_background",
+        "id": "background",
+        "label": "Background Color"
+      },
+      {
+        "type": "url",
+        "id": "seeMore",
+        "label": "See More Link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Collections"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,167 @@
+{% assign background = section.settings.body_text %}
+
+<style>
+  .banner-area {
+    background: {{ background}}
+    ;
+  }
+</style>
+
+<div class="banner-area">
+  <div class="swiper-container main-slider">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+
+        <div class="swiper-slide">
+          <div class="swiper-image" data-swiper-parallax-x="35%">
+            <div class="swiper-image-inner" style="background-image: url('{{ block.settings.image_with_text_image  | img_url: '1200x1200' }}' );">
+              <div class="banner-content">
+                <h2
+                  data-swiper-parallax-duration="1500"
+                  data-swiper-parallax-opacity="0"
+                  data-swiper-parallax="-700">
+                  {% if block.settings.parallax-title != blank %}
+                    {{ block.settings.parallax-title }}
+                  {% endif %}
+                </h2>
+                <p
+                  data-swiper-parallax-duration="1700"
+                  data-swiper-parallax-opacity="0"
+                  data-swiper-parallax="-1000">
+                  {% if block.settings.parallax-banner != blank %}
+                    {{ block.settings.parallax-banner }}
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="swiper-button-prev swiper-button-white"></div>
+    <div class="swiper-button-next swiper-button-white"></div>
+  </div>
+
+  <div class="swiper-container thumb-slider">
+    <div class="swiper-wrapper" role="navigation">
+      {% for block in section.blocks %}
+        <div class="swiper-slide">
+          <div class="slide-bgimg" style="background-image:url('{{ block.settings.image_with_text_image  | img_url: '1200x1200' }}' )">
+            <span>
+              {% if block.settings.parallax-title != blank %}
+                {{ block.settings.parallax-title }}
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<style>
+  @media(max-width:600px) {
+
+    .swiper-container {
+      width: 100%;
+      float: bottom;
+    }
+    .swiper-container.thumb-slider {
+      width: 100%;
+      height: 200px;
+      /* padding-left: 5px; */
+    }
+  }
+</style>
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+
+
+<script>
+  // Params
+  let mainSliderSelector = '.main-slider',
+    thumbSliderSelector = '.thumb-slider';
+
+// Main Slider
+  let mainSliderOptions = {
+    loop: true,
+    speed: 1500,
+    parallax: true,
+    loopAdditionalSlides: 5,
+    grabCursor: true,
+    watchSlidesProgress: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
+  };
+  let mainSlider = new Swiper(mainSliderSelector, mainSliderOptions);
+
+// thumb Slider
+  let thumbSliderOptions = {
+    loop: true,
+    loopAdditionalSlides: 5,
+    speed: 1500,
+    spaceBetween: 5,
+    slidesPerView: 5,
+    centeredSlides: true,
+    touchRatio: 0.2,
+    slideToClickedSlide: true,
+    direction: 'horizontal',
+    breakpoints: {
+      600: {
+        direction: 'vertical'
+      }
+    }
+  };
+  let thumbSlider = new Swiper(thumbSliderSelector, thumbSliderOptions);
+
+  mainSlider.controller.control = thumbSlider;
+  thumbSlider.controller.control = mainSlider;
+</script>
+
+
+
+{% schema %}
+  {
+    "name": "Parallax Banner",
+    "class": "parallax_banner",
+    "settings": [
+      {
+        "type": "color",
+        "id": "body_text",
+        "label": "Background Color"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Parallax Banner"
+      }
+
+    ],
+    "blocks": [
+      {
+        "name": "Parallax Slide",
+        "type": "slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image_with_text_image",
+            "label": "Image"
+          }, {
+            "type": "text",
+            "id": "parallax-title",
+            "label": "Slide Title"
+          }, {
+            "type": "text",
+            "id": "parallax-banner",
+            "label": "Slide Description"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

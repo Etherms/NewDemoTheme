@@ -1,0 +1,106 @@
+<style>
+  .lower-footer {
+    min-width: 380px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+    background-color: #111111;
+    border-top: 1px solid white;
+  }
+  .other1 {
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    margin-left: 20px;
+  }
+
+  .social_links {
+    margin-right: 20px;
+  }
+
+  .social_links ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+
+  .social_links ul li {
+    margin-right: 30px;
+  }
+
+
+  .social_links ul li:last-of-type {
+    margin-right: 0;
+  }
+  .lower-footer a {
+    fill: white;
+  }
+  .lower-footer a:hover {
+    transform: scale(1.2);
+  }
+
+  @media(max-width:600px) {
+    .lower-footer {
+      flex-direction: column;
+    }
+    .other1 {
+      padding-bottom: 20px;
+      margin-left: 0;
+    }
+    .social_links {
+      margin-right: 0;
+    }
+  }
+</style>
+
+{% assign text = section.settings.storename %}
+
+<div class="other1">
+  &copy; 2023 {{ text }} Powered by Shopify
+</div>
+<div class="social_links">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'social_media_links' %}
+      {% if section.settings.allow.social_media_links != false %}
+        <ul class="d-flex  justify-content-end mx-4 list-unstyled">
+          <a>{% render 'social-media' %}</a>
+        </ul>
+      {% endif %}
+    {% endcase %}
+  {% endfor %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "Middle Footer",
+    "class": "lower-footer",
+    "limit": 1,
+    "settings": [
+      {
+        "type": "text",
+        "id": "storename",
+        "label": "Add Store Name",
+        "default": "Sapatoes"
+      }, {
+        "type": "checkbox",
+        "id": "allow_social_media",
+        "default": true,
+        "label": "Enable Social Media Icons"
+      }, {
+        "type": "color",
+        "id": "body_text",
+        "label": "Background Color"
+      }
+
+    ],
+    "blocks": [
+      {
+        "name": "social media links",
+        "type": "social_media_links",
+        "limit": 1
+      }
+    ]
+  }
+{% endschema %}

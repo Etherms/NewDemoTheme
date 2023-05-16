@@ -1,0 +1,44 @@
+<style>
+  .auto-up {
+    color: white;
+    position: fixed;
+    bottom: 85px;
+    right: 45px;
+    z-index: 5;
+    user-select: none;
+  }
+  .auto-up #arrow-up {
+    background-color: #101010;
+    padding: 13px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: 0 0 1px 1px rgb(255 255 255);
+  }
+</style>
+<div class="auto-up">
+  <span
+    class="material-symbols-outlined"
+    id="arrow-up"
+    onclick="topFunction()">
+    keyboard_double_arrow_up
+  </span>
+</div>
+
+<script>
+  let upbutton = document.getElementById("arrow-up")
+
+  window.onscroll = function() {
+    scrollFunction()
+  };
+  function scrollFunction() {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      upbutton.style.display = "block";
+    } else {
+      upbutton.style.display = "none"
+    }
+  }
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>

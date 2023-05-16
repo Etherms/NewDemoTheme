@@ -1,0 +1,51 @@
+{% assign background = section.settings.background %}
+<style>
+  .collection {
+    background: {{ background}};
+  }
+</style>
+<div class="collection {{section.id}}">
+  <div class="section-title">
+    {% if section.settings.title != blank %}
+      <h3>{{ section.settings.title }}</h3>
+    {% endif %}
+  </div>
+  <div class="collection-list">
+    {% for collection in section.settings.collection_list %}
+      <style>
+        .{{ section.id }}.collection-card:nth-of-type({{ forloop.index }}) .cardvalue {
+          background-image: url("{{ collection.featured_image | img_url:'800x800' }}");
+        }
+      </style>
+      <div class="collection-card">
+        <div class="cardvalue">
+          <h3>{{ collection.title }}</h3>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "List of collection",
+    "tag": "section",
+    "class": "collection list",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Add title"
+      }, {
+        "type": "collection_list",
+        "id": "collection_list",
+        "label": "Add collections to display"
+      }, {
+        "type": "color_background",
+        "id": "background",
+        "label": "Background Color"
+      }
+    ]
+  }
+{% endschema %}

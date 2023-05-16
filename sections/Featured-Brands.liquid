@@ -1,0 +1,77 @@
+<Style>
+  .brandSectionContainer {
+    min-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .brandSectionContainer h1 {
+    margin: 20px auto;
+  }
+  .allBrandsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 95vw;
+    margin-bottom: 25px;
+  }
+
+  .brand-card img {
+    width: 100px;
+  }
+</Style>
+
+<div
+  class="brandSectionContainer">
+  <h1>{{ section.settings.featuredBrandid }}</h1>
+  <div
+    class="allBrandsContainer">
+    {% for block in section.blocks %}
+      <div
+        class="brand-card">
+        <a
+          href="{{ block.settings.brand_link }}"><img
+            src="{{ block.settings.brand_logo | img_url: '1200x1200'}}"
+            alt=""></a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Featured Brands",
+    "class": "featuredBrands",
+    "settings": [
+      {
+        "type": "text",
+        "id": "featuredBrandid",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Logo",
+        "type": "logo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "brand_logo",
+            "label": "Image"
+          }, {
+            "type": "url",
+            "id": "brand_link",
+            "label": "Brand Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Brands"
+      }
+    ]
+  }
+{% endschema %}

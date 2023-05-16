@@ -1,0 +1,141 @@
+<style>
+  .aboutUs-header {
+    width: 95%;
+    margin: 70px auto auto;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('{{ section.settings.header_image | img_url: '1200x1200'}}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .aboutUs-header h1 {
+    font-size: 2.8rem;
+    text-align: center;
+    white-space: nowrap;
+    font-family: 'Roboto';
+    color: white;
+    font-weight: 600;
+  }
+  .aboutUs-body {
+    width: 95%;
+    margin: 0 auto;
+  }
+  .aboutUs-body p {
+    font-size: 17px;
+    font-weight: 400;
+    font-family: 'Roboto', 'sans-serif';
+    margin: 20px 0;
+    line-height: 2;
+  }
+  p.AboutUs-text1 {
+    margin-top: 80px;
+  }
+  p.AboutUs-text2 {
+    margin-bottom: 80px;
+  }
+  .AboutUs-image {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .au {
+    width: 307px;
+    height: 230px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .au-image1 {
+    background-image: url('{{ section.settings.image1 | img_url: '1200x1200'}}');
+  }
+  .au-image2 {
+    background-image: url('{{ section.settings.image2 | img_url: '1200x1200'}}');
+  }
+  .au-image3 {
+    background-image: url('{{ section.settings.image3 | img_url: '1200x1200'}}');
+  }
+  .au-image4 {
+    background-image: url('{{ section.settings.image4 | img_url: '1200x1200'}}');
+  }
+  .AboutUs-text-design {
+    width: 95%;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    background: #111111;
+  }
+  .AboutUs-text-design h1 {
+    font-size: 4vw;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 600;
+    line-height: 70px;
+    color: white;
+    padding-left: 30px;
+  }
+</style>
+<div class="aboutUs-header">
+  <h1>GET TO KNOW US</h1>
+</div>
+<div class="aboutUs-body">
+  <p class="AboutUs-text1">
+    Welcome to Sole Connection, your one-stop-shop for all your shoe apparel needs! As the owner of this store, I want to share with you the origin and back story of how we came to be. It all started with my love for sneakers and a desire to create a space where fellow sneakerheads could come together and indulge in their passion. After years of working in the shoe industry, I finally decided to take the leap and open up my own store.
+  </p>
+  <p class="AboutUs-text2">At Sapatoes, we specialize in selling top-quality shoe apparel from some of the biggest brands in the industry. Our selection includes sneakers, boots, sandals, and more, all carefully curated to provide our customers with the latest and greatest styles. We pride ourselves on offering a personalized shopping experience, where our knowledgeable staff is always on hand to help customers find the perfect pair of shoes. Whether you're looking for something to wear for a night out or a comfortable pair of shoes for everyday wear, we have something for everyone. Come visit us at Sole Connection and let us help you find your perfect fit!</p>
+</div>
+<div class="AboutUs-image">
+  <div class="au-image1 au"></div>
+  <div class="au-image2 au"></div>
+  <div class="au-image3 au"></div>
+  <div class="au-image4 au"></div>
+</div>
+<div class="AboutUs-text-design">
+  <h1>TIMELESS DESIGN.<br>EFFORTLESS STYLE.</h1>
+</div>
+
+{% schema %}
+  {
+    "name": "About Us Section",
+    "class": "aboutUs",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "header_image",
+        "label": "Set Header Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image1",
+        "label": "Set First Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image2",
+        "label": "Set Second Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image3",
+        "label": "Set Third Image"
+      }, {
+        "type": "image_picker",
+        "id": "image4",
+        "label": "Set Fourth Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "About Us Section"
+      }
+
+    ]
+  }
+{% endschema %}

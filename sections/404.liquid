@@ -1,0 +1,66 @@
+<style>
+  section.fourofour-notfound {
+    height: 87vh;
+    min-width: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .fourofour-notfound h1 {
+    font-size: 22vw;
+    font-weight: 800;
+  }
+  h3.page-not-found.container {
+    font-size: 3vw;
+    display: flex;
+    align-items: center;
+  }
+  .other-div {
+    position: absolute;
+    color: white;
+    background: #ff5200;
+    transform: rotate(16deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  a.home-button {
+    text-decoration: none;
+    font-size: 20px;
+    color: #ff5200;
+    padding: 6px;
+    box-shadow: 2px 2px 0 3px #ff5200;
+    /* border: 1px solid black; */
+    border: 1px solid #ff5200;
+  }
+
+  a.home-button:hover {
+    color: #ff5200;
+    box-shadow: none;
+  }
+</style>
+
+<section class="fourofour-notfound">
+  <div class="other-div">
+    <h3 class="page-not-found container">Page Not Found</h3>
+  </div>
+  <header class="title">
+    <h1>
+      404</h1>
+  </header>
+  <a href="{{ section.settings.home_url }}" class="home-button">Go Home</a>
+</section>
+
+{% schema %}
+  {
+    "name": "404 Error",
+    "settings": [
+      {
+        "type": "url",
+        "id": "home_url",
+        "label": "Provide Home Link"
+      }
+    ]
+  }
+{% endschema %}

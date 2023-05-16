@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "404",
+      "settings": {
+        "home_url": "https:\/\/store2968.myshopify.com"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

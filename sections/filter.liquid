@@ -1,0 +1,200 @@
+<style>
+
+  .advance-filter {
+    min-width:380px;
+    min-height: calc(100vh - 300px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* Style the filter label */
+  label[for="filter"] {
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-weight: bold;
+    font-size: 28px;
+  }
+  .filter-form {
+    display: flex;
+  }
+  @media only screen and (max-width: 900px) {
+    .filter-form {
+      flex-direction: column;
+    }
+  }
+
+  /* Style the filter dropdown */
+  #collection,
+  #product_type, 
+  #brand,
+  #product {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    margin: 20px 1rem;
+    height: 40px;
+    width: 201px;
+    font-size: 14px;
+  }
+
+  /* Style the no products message */
+
+  select option {
+    font-size: 14px;
+  }
+
+  .advance-filter a {
+    color: #202020;
+    text-decoration: none;
+    background-color: white;
+    padding: 10px 30px;
+    border-radius: 30px;
+    border: 1px solid #202020;
+  }
+
+  .advance-filter a:hover {
+    color: white;
+    background: #191d22;
+  }
+</style>
+
+
+<!-- Create a form to submit filter values -->
+<div class="container bg-secondary py-2 pb-5 d-flex flex-column justify-content-center align-items-center ro">
+  <label for="filter">Advance Filtering</label>
+  <div class="filter-form">
+    <select id="collection" >
+      {% for collection in section.settings.collection_list %}
+        <option value="{{collection.handle}}">{{ collection.title }}</option>
+      {% endfor %}
+    </select>
+    <select id="product_type" disabled>
+    </select>
+    <select id="brand"  disabled>
+    </select>
+  </div>
+  <a href="" class="filter-submit">Submit</a>
+</div>
+
+
+{% for collection in section.settings.collection_list %}
+  <script type="application/json" data-collection-index="{{ collection.handle }}" data-filter-id="collection">
+    {{ collection | json }}
+  </script>
+  <script type="application/json" data-collection-index="{{ collection.handle }}" data-filter-id="product_type">
+    {{ collection["all_types"] | json }}
+  </script>
+  <script type="application/json" data-collection-index="{{ collection.handle }}" data-filter-id="brand">
+    {{ collection["all_vendors"] | json }}
+  </script>
+  {% endfor %}
+  <script>
+
+    $(function(){
+        $('body').on('change','#shopify-section-{{ section.id }} select',function(){
+            var triggerID = $(this).attr('id');
+            console.log("trigger ID" + triggerID);
+            var selects = [];
+            var collections = [];
+
+            if( triggerID == "collection"){
+            $("#shopify-section-{{ section.id }} select").each(function( index ) {
+                selects[index] = $(this);
+                console.log("My index is "+ index +"" +selects[index].html());
+            });
+
+            if(selects[0].html() == $(this).html()){
+                var targetid = $(selects[1]).attr('id');
+                console.log("Values of selects" + $(this).html())
+                var collectionhandle = $(this).find(":selected").val();
+                console.log("This is the collectionhandle : " + collectionhandle);
+                var targetelementfetch = $('[data-filter-id="'+targetid+'"][data-collection-index="'+collectionhandle+'"]').html();
+                console.log("I'm fetching data = " + targetelementfetch);
+                        var getDataByTargetId = $.parseJSON(targetelementfetch);
+                        console.log("getdataby target" +getDataByTargetId)                       
+                        for(i=0; i < getDataByTargetId.length; i++){
+                            $(selects[1]).prop( "disabled", false ); 
+                            var o = new Option("option text", getDataByTargetId[i]);
+                            /// jquerify the DOM object 'o' so we can use the html method
+                            console.log(o)
+                            $(o).html(getDataByTargetId[i]);
+                            $(selects[1]).append(o);
+                        }
+            
+
+
+             //add brand value to third select element
+              var brandSelect = selects[2];
+              var brandData = $('[data-filter-id="brand"][data-collection-index="'+collectionhandle+'"]').html();
+              var brandValues = $.parseJSON(brandData);
+              brandSelect.options.length = 0;
+              brandSelect.disabled = false;
+              for(i=0; i < brandValues.length; i++){
+                $(selects[2]).prop( "disabled", false );
+                  var o = new Option(brandValues[i], brandValues[i]);
+                  brandSelect.add(o);
+            }
+        }
+    }
+  });
+})
+  </script>
+
+<script>
+  $(function(){
+    $('body').on('change','#shopify-section-{{ section.id }} select',function(){
+        var triggerID = $(this).attr('id');
+      if(triggerID == 'product_type'){
+        $(document).ready(function)(){
+          $('#' + triggerID).change(function(){
+        var selectedtype = $(this).val();
+        console.log('Pressed selects' + selectedtype);
+        console.log("Values of this.html" + $(this).html())
+        $(document).ready(function)(){
+          $('#' + selectedtype).change(function(){
+          var pickedtype = $(this).val();
+          console.log("picked type"+pickedtype)
+          })
+        
+      })
+      }
+    }
+  });
+})
+</script>
+
+  {% schema %}
+    {
+      "name": "Advance Filter",
+      "tag": "section",
+      "class": "advance-filter",
+      "max_blocks": 4,
+      "settings": [
+        {
+          "type": "collection_list",
+          "id": "collection_list",
+          "label": "Collection Lists"
+        }
+      ],
+      "blocks": [
+        {
+          "name": "Filter Variant",
+          "type": "filter-variant",
+          "settings": [
+            {
+              "type": "text",
+              "id": "filter_variant",
+              "label": "Filter Variant",
+              "info": "Add a type of option for the filter"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Advance Filter"
+        }
+      ]
+    }
+  {% endschema %}

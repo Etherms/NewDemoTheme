@@ -1,0 +1,42 @@
+{% assign background = section.settings.background %}
+
+
+<style>
+  .collection {
+    background: {{ background}}
+    ;
+  }
+</style>
+<div class="collection-container">
+  <div class="grid-container">
+    {% for collection in shop.metaobjects.list_of_collections.values %}
+      <div class="grid-item">
+        <a href="{{collection.routes.all_products_collection_url}}"><img src="{{ collection.picture | img_url: '1000x' }}" alt="">
+          <h2>{{ collection.name }}</h2>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "List of collection",
+    "tag": "section",
+    "class": "collection",
+    "settings": [
+      {
+        "type": "color_background",
+        "id": "background",
+        "label": "Background"
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "New-Collections"
+      }
+    ]
+  }
+{% endschema %}
