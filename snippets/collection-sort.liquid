@@ -1,0 +1,32 @@
+<style>
+    
+  select#sort-by {
+    padding: 5px 10px;
+  }
+  select#sort-by {
+    border: 1px solid #8b8b8b;
+  }
+  @media(max-width:1449px) {
+    .product-box {
+      justify-content: space-evenly;
+    }
+
+    .product-card {
+      margin-top: 10px;
+    }
+  }
+</style>
+
+<div class="product-lists">
+  <select id="sort-by">
+  {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+
+  {% for option in collection.sort_options %}
+    <option value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %}>
+      {{ option.name }}
+    </option>
+  {% endfor %}
+</select>
+
+{% render 'collection-product-card' %}
+</div>

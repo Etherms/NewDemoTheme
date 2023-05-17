@@ -1,0 +1,66 @@
+<div class="cart-value">
+  <div class="exit-btn">
+    <span class="material-symbols-outlined close-cart">
+      close
+    </span>
+  </div>
+  <div class="cart-counter">
+    <span>Cart&#8304;</span>
+  </div>
+  <div class="seperator"></div>
+
+  <!--Start of the Content of the Cart-->
+
+  <!--When Cart is Empty -->
+  {% comment %} <!--Make This Dynamic-->
+  <div class="cart-Empty"> {% render 'icon-cart-empty' %}
+  <span>Your cart is currently empty.
+  </span>
+  <a href="/collections/all" class="start-shop">Start Shopping</a>
+  </div> {% endcomment %}<!--Adding Something In Cart-->
+
+    <div class="cart-value-container"> <div class="cart-inside">
+      <div class="cart-value-img">
+        <img src="{{'shoe.jpg' | asset_url}}" alt="#">
+      </div>
+      <div class="cart-value-info">
+        <h2 class="itemTitle">
+          Addidas daadad</h2>
+        <p class="itemDesc">
+          Black & White</p>
+        <div class="counter-container">
+          <div class="counter">
+            <span class="material-symbols-outlined add">
+              add
+            </span>
+            <span class="item-number">1</span>
+            <span class="material-symbols-outlined remove">
+              remove
+            </span>
+          </div>
+          <span class="material-symbols-outlined delete">
+            delete
+          </span>
+        </div>
+      </div>
+      <div class="price-container">
+        <span class="Price">$122.50</span>
+      </div>
+    </div>
+  </div>
+  <div class="end-of-cart">
+    <div class="top-end">
+      <div class="total-text">
+        <h3>Total</h3>
+        <span>Tax included. Shipping calculated at checkout.</span>
+      </div>
+      <div class="total-number">
+        <span>$122.50</span>
+      </div>
+    </div>
+    <div class="bottom-end">
+      <a href="#" class="view-cart">View cart</a>
+      <a href="#" class="checkout">Checkout</a>
+    </div>
+  </div>
+</div>

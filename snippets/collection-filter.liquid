@@ -1,0 +1,161 @@
+<style>
+  form.filter-form {
+    float: left;
+    min-width: 20vw;
+    max-width: 20vw;
+    padding: 0 25px 0 20px;
+  }
+  details.filter-group:first-of-type {
+    padding-top: 0;
+  }
+
+  summary {
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+  }
+  summary.filter-group-summary:after {
+    content: "+";
+    margin-left: auto;
+    font-size: 20px;
+  }
+  .filter-group[open] .filter-group-summary:after {
+    content: "-";
+  }
+  details.filter-group {
+    border-bottom: 2px solid black;
+    padding: 15px 0;
+  }
+  .filter-group-display {
+    padding-left: 20px;
+  }
+  ul.filter-group-display__list {
+    list-style: none;
+  }
+  ul.filter-group-display__list input[type=checkbox] {
+    margin-right: 8px;
+  }
+  .filter-group-display__price-range {
+    margin-left: 13px;
+  }
+  .filter-group-display__price-range-from {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .filter-group-display__price-range-to {
+    margin-bottom: 10px;
+  }
+  .filter-group-display input[type="submit"] {
+    background: black;
+    color: white;
+    border: white;
+    padding: 8px 15px;
+  }
+  .active-filters {
+    margin-top: 13px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  a.active-filters__clear {
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    padding: 4px 5px;
+    width: 70px;
+  }
+  a.active-filters__clear:hover {
+    color: #787878;
+    border-color: #787878;
+  }
+  a.active-filters__remove-filter {
+    text-decoration: none;
+    color: black;
+    padding-left: 27px;
+  }
+
+  a.active-filters__remove-filter {
+    margin-bottom: 10px;
+    margin-top: -10px;
+  }
+</style>
+
+
+<form class="filter-form">
+  {% for filter in collection.filters %}
+    <details class="filter-group">
+      <summary class="filter-group-summary">
+        <div>
+          <span>{{ filter.label }}</span>
+          {% if filter.active_values.size > 0 %}
+            <span>({{ filter.active_values.size }})</span>
+          {% endif %}
+        </div>
+      </summary>
+
+      <div class="filter-group-display">
+        <div class="filter-group-display__header">
+          {% if filter.active_values.size > 0 %}
+            <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset">Reset</a>
+          {% endif %}
+        </div>
+
+        {% case filter.type %}
+          {% when 'boolean', 'list' %}
+          <ul class="filter-group-display__list">
+            {% for filter_value in filter.values %}
+              <li class="filter-group-display__list-item">
+                <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                  <input
+                    type="checkbox"
+                    name="{{ filter_value.param_name }}"
+                    value="{{ filter_value.value }}"
+                    id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                    {% if filter_value.active %}checked{% endif %}
+                    {% if filter_value.count == 0 and filter_value.active == false %}disabled{% endif %}>{{ filter_value.label }}
+                </label>
+              </li>
+            {% endfor %}
+          </ul>
+
+          {% when 'price_range' %}
+          <div class="filter-group-display__price-range">
+            <div class="filter-group-display__price-range-from">
+              <span>{{ cart.currency.symbol }}</span>
+              <input name="{{ filter.min_value.param_name }}"id="Filter-{{ filter.min_value.param_name }}"{% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}type="number"placeholder="0"min="0"max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+              <label for="Filter-{{ filter.min_value.param_name }}">From</label>
+            </div>
+            <div class="filter-group-display__price-range-to">
+              <span>{{ cart.currency.symbol }}</span>
+              <input name="{{ filter.max_value.param_name }}"id="Filter-{{ filter.max_value.param_name }}"{% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}type="number"placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"min="0"max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+              <label for="Filter-{{ filter.max_value.param_name }}">To</label>
+            </div>
+          </div>
+        {% endcase %}
+      </div>
+    </details>
+  {% endfor %}
+
+  <div class="active-filters">
+    <a
+      href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
+      class="active-filters__clear"
+      id="clear-all">Clear all</a>
+    {% for filter in collection.filters %}
+      {% if filter.type == "price_range" %}
+        {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+          <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
+            {%- assign min_value = filter.min_value.value | default: 0 -%}
+            {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+            {{ min_value | money }} - {{ max_value | money }} X
+          </a>
+        {%- endif -%}
+      {%- else -%}
+        {%- for filter_value in filter.active_values -%}
+          <a class="active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">
+            {{ filter.label }}: {{ filter_value.label }} X
+          </a>
+        {%- endfor -%}
+      {%- endif- %}
+    {%- endfor -%}
+  </div>
+</form>

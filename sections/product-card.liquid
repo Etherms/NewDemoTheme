@@ -1,0 +1,17 @@
+<style>
+  input.Add {
+    margin-top: 500px;
+  }
+</style>
+
+<select name="id">
+  {% for variant in product.variants %}
+    <img
+      src="{{ image.variant.id | img_url:'1200x1200' }}"
+      style="width:400px; heigh: 400px;"
+      alt="">
+    <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
+      {{ variant.title }} - {{ variant.price | money }}
+    </option>
+  {% endfor %}
+</select>

@@ -1,0 +1,22 @@
+<form
+  action="/search"
+  method="get"
+  class="search-function">
+  <div class="top">
+    <span
+      type="submit"
+      value="Search"
+      class="material-symbols-outlined inside-search search">
+      search
+    </span>
+    <input
+      type="text"
+      class="search-value"
+      value="{{search.terms | escape}}"
+      placeholder="Search...">
+    <span class="material-symbols-outlined close-search">
+      close
+    </span>
+  </div>
+  <div class="bottom"></div>
+</form>

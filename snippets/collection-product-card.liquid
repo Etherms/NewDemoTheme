@@ -1,0 +1,52 @@
+<style>
+  .product-box {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .product-card {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin: 20px 28px 20px 0;
+    min-width: 150px;
+    border: 1px solid #939393;
+    transition: transform 0.5s;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: scale(1.05);
+  }
+  .product-card img {
+    width: 240px;
+    height: 300px;
+    margin: 10px;
+    border-radius: 13px;
+  }
+  p.p-price {
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+  p.p-name {
+    font-size: 25px;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+</style>
+
+{% paginate collection.products by 20 %}
+  <div class="product-box">
+    {% for product in collection.products %}
+      <div class="product-card">
+        <p class="p-price">{{ product.price | money }}</p>
+        <p class="p-name">{{ product.title }}</p>
+
+        {% for image in product.images limit: 1 %}
+          <img src="{{ image | img_url:"600x600" }}">
+        {% endfor %}
+      </div>
+    {% endfor %}
+    {{ paginate | default_pagination }}
+  </div>
+{% endpaginate %}
