@@ -116,7 +116,6 @@
               </li>
             {% endfor %}
           </ul>
-
           {% when 'price_range' %}
           <div class="filter-group-display__price-range">
             <div class="filter-group-display__price-range-from">
@@ -130,6 +129,9 @@
               <label for="Filter-{{ filter.max_value.param_name }}">To</label>
             </div>
           </div>
+
+
+
         {% endcase %}
       </div>
     </details>

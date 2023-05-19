@@ -1,5 +1,5 @@
 <form
-  action="/search"
+  action="{{ routes.search_url }}"
   method="get"
   class="search-function">
   <div class="top">
@@ -11,9 +11,11 @@
     </span>
     <input
       type="text"
+      name="q"
       class="search-value"
       value="{{search.terms | escape}}"
       placeholder="Search...">
+
     <span class="material-symbols-outlined close-search">
       close
     </span>

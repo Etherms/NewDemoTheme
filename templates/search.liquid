@@ -96,13 +96,10 @@
   </form>
 
   {% if search.performed %}
-
     {% paginate search.results by 10 %}
-
       {% if search.results == empty %}
         <p>Your search for "{{ search.terms | escape }}" did not yield any results</p>
       {% else %}
-
         <ol class="list">
           {% for item in search.results %}
             <li class="search-list">
@@ -117,16 +114,8 @@
             </li>
           {% endfor %}
         </ol>
-
       {% endif %}
-
-
       <p>{{ paginate | default_pagination }}</p>
-
     {% endpaginate %}
-
   {% endif %}
-
-
-
 </div>

@@ -1,0 +1,157 @@
+:root{
+    --background1:rgb(255, 255, 255);
+    --color1:rgb(26, 26, 26);
+    --background2:rgb(17, 17, 17);
+    --color2:rgb(255, 255, 255);
+    --background1-2:rgb(241, 241, 241);
+    --evencolor: rgb(63, 63, 63);
+    --light-linear-gradient1:rgb(255, 255, 255);
+    --light-linear-gradient2:rgb(255,255,255);
+    --dark-linear-gradient1: linear-gradient(65deg, rgba(26, 26, 26, 1), rgba(43, 42, 42, 1) 100%);
+    --dark-linear-gradient2: linear-gradient(180deg, rgba(43, 42, 42, 1), rgba(26, 26, 26, 1) 100%);
+    --opacity1:0.6;
+    --text-shadow:1px 1px 1px black;
+    --none:none;
+    --body-background:rgb(235, 235, 235);
+    --body-background2:rgb(50,50,50);
+
+
+}
+body{
+    background: var(--body-background)!important; ;
+}
+
+/* Announcement Bar */
+.inside-announcement{
+    color:white;
+}
+.announcement-container{
+    background:#101010;
+}
+
+
+header{
+    border-top: 1px solid var(--color1);
+}
+
+/* Box-shadow when Scrolled */
+header.scrolled{
+    border-top:none;
+    box-shadow: 0 1px 13px 0 rgba(var(--color1), 0.75);
+}
+
+.navbar ul li a{
+    color:var(--color1);
+    
+}
+h2.store-title, .button__title{
+    color: var(--color1);
+}
+.header span{
+    color: var(--color1);
+}
+.navmenu-dropdown ul li a{
+    color: var(--color1);
+}
+
+/* When Scrolled Design */
+.scrolled h2,.scrolled ul a,.scrolled span, .scrolled p{
+    text-shadow: none !important;
+    color: var(--color1) !important;
+}
+header.scrolled{
+    background:var(---color1);
+}
+header.scrolled{
+    background: var(--background1);
+}
+
+
+
+.banner-title, .banner-desc{
+    color: var(--color1);
+}
+.banner-title, .banner-desc{
+    /* text-shadow: 4px 4px 4px var(---color1); */
+}
+.shop-btn {
+    color: var(--color1);
+    border-color: var(--color1);
+}
+.shop-btn:hover{
+    color: var(--color1);
+}
+
+span.swiper-pagination-bullet {
+    background: var(--color1);
+}
+.swiper .pause, .swiper .play{
+    color: var(--color1);
+    text-shadow: 0px 0px 2px var(--color1);
+}
+
+
+
+/* Auto Up button */
+
+.auto-up{
+    color: var(--color2);
+}
+
+.auto-up #arrow-up {
+    background-color: var(--background2);
+    box-shadow: 0 0 1px 1px var(--background1);
+}
+
+/* Slider */
+.slider{
+    background-color: var(--background1-2);
+    border-top: 2px solid var(--color1);
+    border-bottom: 2px solid var(--color1);
+}
+.slide-track{
+    color: var(--color1);
+}
+
+/* Featured Collection Section */
+.featured_section{
+    background:var(--light-linear-gradient2);
+}
+
+.featured_section .swiper-pagination-clickable .swiper-pagination-bullet { 
+    background:var(--background2);
+}
+.featured_section span.swiper-pagination-bullet.swiper-pagination-bullet-active {     /*Pagination color*/
+    background: var(--background2);
+}
+p.f-section-desc, .f-collection{
+    color: var(--color1);
+}
+a.featured-button.button {
+    color: var(--color1);
+    border: 1px solid var(--color1);
+}
+.product-price, h2.product-title {
+    color: #111111;
+}
+
+/* Sale */
+.item-selled, .item-desc, .sale-desc{
+    color: var(--color1);
+}
+.shop-now-btn{
+    background: var(--color1);
+    color: var(--color2);
+}
+.shop-now-btn:hover{
+    color: var(--color2);
+}
+
+/* Testimony */
+.testimony-tittle{
+    color: var(--color1);
+}
+
+.testimony, .cstumer-testimony{
+    color: white;
+}

@@ -2,15 +2,77 @@
 
 
 <style>
-  header.scrolled {
-    background-color: {{ background}}
-    ;
+  .switch--darkmode {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 22px;
   }
-  .header.scrolled > .navmenu-dropdown {
-    background-color: {{ background}}
-    ;
+
+  .switch--darkmode input {
+    display: none;
+  }
+
+  .darkmode {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  .darkmode:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  input:checked + .darkmode {
+    background-color: #ccc;
+  }
+  input:checked + .darkmode:before {
+    background-color: rgb(36, 36, 36);
+  }
+
+
+  input:checked + .darkmode:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  .darkmode.darkmode--round {
+    border-radius: 34px;
+  }
+
+  .darkmode.darkmode--round:before {
+    border-radius: 50%;
+  }
+  .button--darkmode {
+    display: flex;
+    align-items: center;
+    margin-right: 19px;
+  }
+  p.button__title {
+    margin-bottom: 0;
+    padding-right: 10px;
+    font-family: 'Roboto';
+    font-weight: 500;
+    margin-top: 0;
+    white-space: nowrap;
   }
 </style>
+
+
 <div class="header-wrapper">
   <div class="toggle">
     <span class="material-symbols-outlined header-menu">
@@ -20,32 +82,45 @@
       search
     </span>
   </div>
-  <div class="logo-header">
-    {% if section.settings.title != blank %}
-      <a href="https://store2968.myshopify.com" style="text-decoration:none;">
-        <h2 class="store-title">{{ section.settings.title }}</h2>
-      </a>
-    {% endif %}
+  <div class="header-wrapper--left">
+    <div class="logo-header">
+      {% if section.settings.title != blank %}
+        <a href="https://store2968.myshopify.com" style="text-decoration:none;">
+          <h2 class="store-title">{{ section.settings.title }}</h2>
+        </a>
+      {% endif %}
+    </div>
+    <div class="navbar">
+      <ul>
+        {% for link in section.settings.menu.links %}
+          <li>{{ link.title | link_to: link.url }}</li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
-  <div class="navbar">
-    <ul>
-      {% for link in section.settings.menu.links %}
-        <li>{{ link.title | link_to: link.url }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div class="buttons">
-    <span class="material-symbols-outlined search-right search navbar-icon">
-      search
-    </span>
-    <span class="break first-break">|</span>
-    <span class="material-symbols-outlined person navbar-icon">
-      person
-    </span>
-    <span class="break">|</span>
-    <span class="material-symbols-outlined bag navbar-icon">
-      shopping_bag
-    </span>
+  <div class="header-wrapper--right">
+    <div class="buttons">
+      <span class="material-symbols-outlined search-right search navbar-icon">
+        search
+      </span>
+
+
+      <span class="break first-break">|</span>
+      <span class="material-symbols-outlined person navbar-icon">
+        person
+      </span>
+      <span class="break">|</span>
+      <span class="material-symbols-outlined bag navbar-icon">
+        shopping_bag
+      </span>
+    </div>
+    <div class="button--darkmode">
+      <p class="button__title">Dark Mode</p>
+      <label class="switch--darkmode">
+        <input type="checkbox">
+        <div class="darkmode darkmode--round"></div>
+      </label>
+    </div>
   </div>
 </div>
 <div class="navmenu-dropdown">
@@ -55,12 +130,12 @@
     {% endfor %}
   </ul>
 </div>
+
+
 <!-- Search Function Pop-up Div -->
 {% render 'header-search' %}
 <!-- Login Function Pop-up Div -->
 {% render 'header-login' %}
-
-
 <!-- Cart Function Pop-up Div -->
 {% render 'header-cart' %}
 
