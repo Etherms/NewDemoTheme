@@ -3,27 +3,21 @@
     "04e7921b-141e-4afd-8ba4-a49823b72d06": {
       "type": "banner",
       "settings": {
-        "image_1": "shopify:\/\/shop_images\/318-best-sneakers-for-men-15964868-1440.png",
-        "image_2": "shopify:\/\/shop_images\/OD-BR365_RETRO_J_20180403173324.png",
-        "banner-title": "home of classics",
-        "desc-banner": "bring power to your steps",
+        "banner-title": "embrace the journey",
+        "desc-banner": "Discover your perfect fit",
         "shop_link": "shopify:\/\/collections\/all"
+      }
+    },
+    "705c7dbb-af4d-4d70-ac86-c922f63cf6e7": {
+      "type": "new-collection",
+      "settings": {
+        "background": "linear-gradient(65deg, rgba(26, 26, 26, 1), rgba(43, 42, 42, 1) 100%)"
       }
     },
     "ba357d20-8d3f-4d72-9acc-74704ed85632": {
       "type": "lineSection",
       "settings": {
         "body_text": ""
-      }
-    },
-    "5cc5286c-54c4-4c0e-8c08-e9b23969c51e": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Step up your style game",
-        "colDesc": "This is a limited edition collection of shoes in the market",
-        "collection": "others",
-        "background": "linear-gradient(180deg, rgba(43, 42, 42, 1), rgba(26, 26, 26, 1) 100%)",
-        "seeMore": "shopify:\/\/collections\/all"
       }
     },
     "b9e01c96-21d0-486e-85e6-88dde4065bb6": {
@@ -34,10 +28,77 @@
         "shopCards": ""
       }
     },
-    "705c7dbb-af4d-4d70-ac86-c922f63cf6e7": {
-      "type": "new-collection",
+    "5cc5286c-54c4-4c0e-8c08-e9b23969c51e": {
+      "type": "featured-collection",
       "settings": {
-        "background": "linear-gradient(65deg, rgba(26, 26, 26, 1), rgba(43, 42, 42, 1) 100%)"
+        "title": "Step up your style game",
+        "colDesc": "This is a limited edition collection of shoes in the market",
+        "collection": "others",
+        "seeMore": "shopify:\/\/collections\/all"
+      }
+    },
+    "eb5b69ea-e9d3-467d-93c5-a489d703d92d": {
+      "type": "Parallax_banner",
+      "blocks": {
+        "cdd95ed3-53b7-4b35-a3c6-75b4560275c8": {
+          "type": "slide",
+          "settings": {
+            "image_with_text_image": "shopify:\/\/shop_images\/a031e6b5c39bbc9683d68575b566a3db.jpg",
+            "parallax-title": "Walk with Confidence",
+            "parallax-banner": "From the office to the dance floor, our footwear empowers you to walk with confidence and style, no matter the occasion."
+          }
+        },
+        "0a0a54a2-92a2-47ca-880a-34441fc9b263": {
+          "type": "slide",
+          "settings": {
+            "image_with_text_image": "shopify:\/\/shop_images\/christian-dior-air-jordan-sneakers.webp",
+            "parallax-title": "Step in Style",
+            "parallax-banner": "Our shoes are designed to make a statement with every step you take, helping you stand out from the crowd while staying comfortable."
+          }
+        },
+        "21996da0-0fa5-4713-a299-043c921415ba": {
+          "type": "slide",
+          "settings": {
+            "image_with_text_image": "shopify:\/\/shop_images\/fqr6cucodhwybmku0brz.webp",
+            "parallax-title": "Comfort Meets Fashion",
+            "parallax-banner": "With our shoes, you don't have to sacrifice fashion for comfort - get the best of both worlds with our trendy designs and cushioned soles."
+          }
+        },
+        "03721d26-46d3-419d-91be-d972bb41c807": {
+          "type": "slide",
+          "settings": {
+            "image_with_text_image": "shopify:\/\/shop_images\/converse-chuck-taylor-all-star-black-joy.jpg",
+            "parallax-title": "Move with Ease",
+            "parallax-banner": "Our footwear lets you move with ease and grace, providing the perfect fit and support to keep you going all day long."
+          }
+        },
+        "55e0cb94-b58d-4293-a191-9603c97ae122": {
+          "type": "slide",
+          "settings": {
+            "image_with_text_image": "shopify:\/\/shop_images\/best-retro-sneakers1.webp",
+            "parallax-title": "Elevate Your Step",
+            "parallax-banner": "Experience the joy of walking on clouds with our shoes' soft and supportive materials, giving you a comfortable and enjoyable stride."
+          }
+        },
+        "f2d071ff-fcee-405d-8a8c-da447f4a1cf3": {
+          "type": "slide",
+          "settings": {
+            "image_with_text_image": "shopify:\/\/shop_images\/253-best-retro-sneakers-16232159-1440.webp",
+            "parallax-title": "Shoes that Shine",
+            "parallax-banner": "Elevate your footwear game with our trendy designs, crafted with high-quality materials to provide the perfect blend of style and durability."
+          }
+        }
+      },
+      "block_order": [
+        "cdd95ed3-53b7-4b35-a3c6-75b4560275c8",
+        "0a0a54a2-92a2-47ca-880a-34441fc9b263",
+        "21996da0-0fa5-4713-a299-043c921415ba",
+        "03721d26-46d3-419d-91be-d972bb41c807",
+        "55e0cb94-b58d-4293-a191-9603c97ae122",
+        "f2d071ff-fcee-405d-8a8c-da447f4a1cf3"
+      ],
+      "settings": {
+        "body_text": "#1a1a1a"
       }
     },
     "d946d801-a4e5-405f-a2a1-3557029457c9": {
@@ -127,70 +188,6 @@
         "featuredBrandid": "Featured Brand"
       }
     },
-    "eb5b69ea-e9d3-467d-93c5-a489d703d92d": {
-      "type": "Parallax_banner",
-      "blocks": {
-        "cdd95ed3-53b7-4b35-a3c6-75b4560275c8": {
-          "type": "slide",
-          "settings": {
-            "image_with_text_image": "shopify:\/\/shop_images\/a031e6b5c39bbc9683d68575b566a3db.jpg",
-            "parallax-title": "Walk with Confidence",
-            "parallax-banner": "From the office to the dance floor, our footwear empowers you to walk with confidence and style, no matter the occasion."
-          }
-        },
-        "0a0a54a2-92a2-47ca-880a-34441fc9b263": {
-          "type": "slide",
-          "settings": {
-            "image_with_text_image": "shopify:\/\/shop_images\/christian-dior-air-jordan-sneakers.webp",
-            "parallax-title": "Step in Style",
-            "parallax-banner": "Our shoes are designed to make a statement with every step you take, helping you stand out from the crowd while staying comfortable."
-          }
-        },
-        "21996da0-0fa5-4713-a299-043c921415ba": {
-          "type": "slide",
-          "settings": {
-            "image_with_text_image": "shopify:\/\/shop_images\/fqr6cucodhwybmku0brz.webp",
-            "parallax-title": "Comfort Meets Fashion",
-            "parallax-banner": "With our shoes, you don't have to sacrifice fashion for comfort - get the best of both worlds with our trendy designs and cushioned soles."
-          }
-        },
-        "03721d26-46d3-419d-91be-d972bb41c807": {
-          "type": "slide",
-          "settings": {
-            "image_with_text_image": "shopify:\/\/shop_images\/converse-chuck-taylor-all-star-black-joy.jpg",
-            "parallax-title": "Move with Ease",
-            "parallax-banner": "Our footwear lets you move with ease and grace, providing the perfect fit and support to keep you going all day long."
-          }
-        },
-        "55e0cb94-b58d-4293-a191-9603c97ae122": {
-          "type": "slide",
-          "settings": {
-            "image_with_text_image": "shopify:\/\/shop_images\/best-retro-sneakers1.webp",
-            "parallax-title": "Elevate Your Step",
-            "parallax-banner": "Experience the joy of walking on clouds with our shoes' soft and supportive materials, giving you a comfortable and enjoyable stride."
-          }
-        },
-        "f2d071ff-fcee-405d-8a8c-da447f4a1cf3": {
-          "type": "slide",
-          "settings": {
-            "image_with_text_image": "shopify:\/\/shop_images\/253-best-retro-sneakers-16232159-1440.webp",
-            "parallax-title": "Shoes that Shine",
-            "parallax-banner": "Elevate your footwear game with our trendy designs, crafted with high-quality materials to provide the perfect blend of style and durability."
-          }
-        }
-      },
-      "block_order": [
-        "cdd95ed3-53b7-4b35-a3c6-75b4560275c8",
-        "0a0a54a2-92a2-47ca-880a-34441fc9b263",
-        "21996da0-0fa5-4713-a299-043c921415ba",
-        "03721d26-46d3-419d-91be-d972bb41c807",
-        "55e0cb94-b58d-4293-a191-9603c97ae122",
-        "f2d071ff-fcee-405d-8a8c-da447f4a1cf3"
-      ],
-      "settings": {
-        "body_text": "#1a1a1a"
-      }
-    },
     "3a65b4ed-f777-4eaa-86c8-f9a689a6e918": {
       "type": "letter",
       "settings": {
@@ -206,15 +203,15 @@
   },
   "order": [
     "04e7921b-141e-4afd-8ba4-a49823b72d06",
-    "ba357d20-8d3f-4d72-9acc-74704ed85632",
-    "5cc5286c-54c4-4c0e-8c08-e9b23969c51e",
-    "b9e01c96-21d0-486e-85e6-88dde4065bb6",
     "705c7dbb-af4d-4d70-ac86-c922f63cf6e7",
+    "ba357d20-8d3f-4d72-9acc-74704ed85632",
+    "b9e01c96-21d0-486e-85e6-88dde4065bb6",
+    "5cc5286c-54c4-4c0e-8c08-e9b23969c51e",
+    "eb5b69ea-e9d3-467d-93c5-a489d703d92d",
     "d946d801-a4e5-405f-a2a1-3557029457c9",
     "0f13e2e7-9b90-45d0-b750-7bb3c54c4ef5",
     "2400eb49-7a00-41f9-a1bc-dc86ed61a092",
     "861599dc-75d3-4b64-8583-7d7325cfc221",
-    "eb5b69ea-e9d3-467d-93c5-a489d703d92d",
     "3a65b4ed-f777-4eaa-86c8-f9a689a6e918",
     "6103e18e-e2f4-455b-8e9b-f5c9aa7b7b57"
   ]

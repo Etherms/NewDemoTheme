@@ -1,26 +1,121 @@
 <style>
-    
-  select#sort-by {
-    padding: 5px 10px;
-  }
-  select#sort-by {
-    border: 1px solid #8b8b8b;
-  }
-  @media(max-width:1449px) {
-    .product-box {
-      justify-content: space-evenly;
-    }
+  .product-lists {
+    background: white;
+    width: 72%;
+    margin-left: auto;
+    margin-right: 43px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 1px 3px #D9D9D9;
+    position: relative;
+}
 
-    .product-card {
-      margin-top: 10px;
-    }
+  .product-box {
+      ustify-content: space-evenly;
   }
+
+  .product-card {
+    margin-top: 10px;
+  }
+  
+  select#sort-by {
+    border: 2px solid #D9D9D9;
+    border-radius: 5px;
+    position: absolute;
+    right: 39px;
+    top: 23px;
+    color: #575757;
+    font-weight: 500;
+    line-height: 19px;
+    font-family: 'Roboto',sans-serif;
+}
+
+p.sortBy {
+    font-family: 'Roboto',sans-serif;
+    font-weight: 600;
+    line-height: 19px;
+    color: #575757;
+    position: absolute;
+    top: 27px;
+    right: 206px;
+}
+p.appliedFilter-text {
+    margin-bottom: 0;
+    margin-top: 10px;
+    padding-right: 10px;
+    color: #575757;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 600;
+    line-height: 19px;
+}
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+a.active-filters__remove-filter {
+    text-decoration: none;
+    color: #484848;
+    background: #dfdfdf;
+    padding: 0 18px 0 7px;
+    margin-right: 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    margin-top: 10px; 
+    font-size: 14px;
+    position: relative;
+}
+a.active-filters__remove-filter:after {
+    content: "X";
+    font-size: 10px;
+    position: absolute;
+    top: 5px;
+    right: 6px;
+}
+.activefilter--parent-container {
+    display: flex;
+    padding-top: 15px;
+    padding-left: 34px;
+    max-width: 72%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+a#clear-all {
+    margin-top: 10px;
+    color: #2c2c2c
+}
 </style>
 
 <div class="product-lists">
+
+  <div class="activefilter--parent-container">
+  <p class="appliedFilter-text">Applied Filter:</p>
+  <div class="active-filters" id="active-filters-container">
+    {% for filter in collection.filters %}
+      {% if filter.type == "price_range" %}
+        {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+          <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
+            {%- assign min_value = filter.min_value.value | default: 0 -%}
+            {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+            {{ min_value | money }} - {{ max_value | money }}
+          </a>
+        {%- endif -%}
+      {%- else -%}
+        {%- for filter_value in filter.active_values -%}
+          <a class="active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">
+            {{ filter.label }}: {{ filter_value.label }}
+          </a>
+        {%- endfor -%}
+      {%- endif- %}
+    {%- endfor -%}
+  </div>
+  <a
+  href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
+  class="active-filters__clear"
+  id="clear-all">Clear all</a>
+</div>
+  <p class="sortBy">Sort by:</p>
   <select id="sort-by">
   {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
-
   {% for option in collection.sort_options %}
     <option value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %}>
       {{ option.name }}
@@ -30,3 +125,5 @@
 
 {% render 'collection-product-card' %}
 </div>
+
+

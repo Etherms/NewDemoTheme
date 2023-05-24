@@ -12,6 +12,7 @@
 .featured_section{
   min-width: 380px;
   margin-top: 20px;
+  position: relative;
 }
 .background-color{
   padding-top: 50px;
@@ -54,8 +55,8 @@ p.f-section-desc {
 }
 .featured_section .swiper-slide img {
     cursor: pointer;
-    min-height: 449px;
-    min-width: 365px;
+    min-height: 410px;
+    min-width: 350px;
 }
 .product-price {
     font-size: 18px;
@@ -64,18 +65,21 @@ p.f-section-desc {
 h2.product-title {
     font-size: 20px;
     font-family: 'Roboto';
-    font-weight: 400;
+    font-weight: 500;
+    color: hsl(211 9% 18% / 1);
 }
 a.featured-button.button {
     text-decoration: none;
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 400;
     font-family: 'Roboto';
-    margin: 0px auto;
+    margin: 15px auto 10px;
     padding: 10px 20px;
     width: 146px;
     display: flex;
     align-items: center;
+    background: #242424;
+    color: hsl(0 10% 87% / 1);
 }
 .featured-arrow-btn{
   top: 13% !important;
@@ -95,14 +99,33 @@ a.featured-button.button:hover {
     display: block;
 }
 /* Finished Featured Section */
+
+.featured-swiper [class^="swiper-button-"]::after {
+    font-size: 35px;
+    color: black;
+}
+.featured-swiper [class^="swiper-button-"]:hover::after{
+  color: white;
+  background-color: black;
+  padding: 10px;
+  border-radius: 8px;
+}
+.swiper-button-prev{
+  transform: translateX(35px);
+  z-index: 2;
+}
+.swiper-button-next{
+  transform: translateX(-35px);
+  z-index: 2;
+}
 </style>
 
 
 <div class="background-color" style="background: {{ background }} ">
-  <h3 class="f-collection">{{ title }}<h3>
-  <p class="f-section-desc">{{ collectionDesc }}</p>
-<div class="{{ section.id }} container overflow-hidden ">
-  <div class="swiper-wrapper f-wrapper">
+  <h3 class="f-collection" data-aos="fade-up"  data-aos-duration="2000">{{ title }}<h3>
+  <p class="f-section-desc" data-aos="fade-up"  data-aos-duration="2500">{{ collectionDesc }}</p>
+<div class="{{ section.id }} featured-swiper container overflow-hidden">
+  <div class="swiper-wrapper f-wrapper"  data-aos="zoom-out" data-aos-duration="2000">
     {% for product in section.settings.collection.products %}
       <div class="swiper-slide">
         {% for image in product.images %}
@@ -110,13 +133,15 @@ a.featured-button.button:hover {
         {% endfor %}
         <div class="product-info">
           <h2 class="product-title">{{ product.title }}</h2>
-          <p class="product-price">{{ product.price | money }}</p>
         </div>
       </div>
     {% endfor %}
     
   </div>
-  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+
 </div>
 <a href="{{ section.settings.seeMore }}" class="featured-button button">Show More<span class="material-symbols-outlined arrow-btn featured-arrow-btn">
   arrow_forward
@@ -128,7 +153,10 @@ a.featured-button.button:hover {
     var swiper = new Swiper('.{{section.id}}', {
       direction: 'horizontal',
       slidesPerView: 3,
-      spaceBetween: 20,
+      spaceBetween: 20,navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
       pagination: {
         el: '.{{section.id}} .swiper-pagination',
         clickable: true

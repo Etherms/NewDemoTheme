@@ -1,88 +1,160 @@
 <style>
   form.filter-form {
     float: left;
-    min-width: 20vw;
-    max-width: 20vw;
-    padding: 0 25px 0 20px;
-  }
-  details.filter-group:first-of-type {
-    padding-top: 0;
+    width: 255px;
+    margin-left: 50px;
+    position: absolute;
+    overflow-y: scroll;
+    top: 3px;
+    max-height: 326px;
   }
 
   summary {
     cursor: pointer;
     display: flex;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0 10px;
+    align-items: center;
+    outline: none;
+  }
+  summary span {
+    color: #262626;
+    text-shadow: 1px 1px 1px white;
+    font-family: 'Roboto';
+    font-weight: 500;
   }
   summary.filter-group-summary:after {
     content: "+";
     margin-left: auto;
-    font-size: 20px;
+    font-size: 33px;
+    height: 25px;
+    margin-top: -25px;
+    color: #464646;
   }
   .filter-group[open] .filter-group-summary:after {
     content: "-";
+    margin-right: 4px;
   }
   details.filter-group {
-    border-bottom: 2px solid black;
-    padding: 15px 0;
+    border-bottom: none;
+    padding: 10px 0;
+    margin-bottom: 3px;
+    border-bottom: 1px solid black;
   }
-  .filter-group-display {
-    padding-left: 20px;
+  .filter-group-display__list-item label {
+    color: #3e3e3e;
+    font-weight: 400;
+    font-size: 14px;
   }
   ul.filter-group-display__list {
     list-style: none;
   }
   ul.filter-group-display__list input[type=checkbox] {
     margin-right: 8px;
+    transform: scale(1.2);
   }
   .filter-group-display__price-range {
-    margin-left: 13px;
+    margin-left: 27px;
   }
-  .filter-group-display__price-range-from {
+  .price-input {
+    display: flex;
+  }
+  .filter-group-display__price-range {
+    padding-right: 25px;
+    margin-top: 18px;
+  }
+
+  .price-input input[type=number] {
+    width: 100%;
+    font-size: 14px;
+  }
+  .filter-group-display__price-range-from.price-input::after {
+    content: "-";
+    font-size: 19px;
+    font-weight: 500;
+    padding: 0 4px;
+  }
+
+  .filter-group-display__price-range-from,
+  .filter-group-display__price-range-to {
     margin-top: 10px;
     margin-bottom: 10px;
   }
-  .filter-group-display__price-range-to {
-    margin-bottom: 10px;
-  }
+
   .filter-group-display input[type="submit"] {
     background: black;
     color: white;
     border: white;
     padding: 8px 15px;
   }
-  .active-filters {
-    margin-top: 13px;
-    display: flex;
-    flex-direction: column-reverse;
-  }
-  a.active-filters__clear {
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    padding: 4px 5px;
-    width: 70px;
-  }
-  a.active-filters__clear:hover {
-    color: #787878;
-    border-color: #787878;
-  }
-  a.active-filters__remove-filter {
-    text-decoration: none;
-    color: black;
-    padding-left: 27px;
+
+
+  /*Range Input*/
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
   }
 
-  a.active-filters__remove-filter {
-    margin-bottom: 10px;
-    margin-top: -10px;
+  .price-input .separator {
+    width: 130px;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+  }
+  .inputSlide {
+    height: 5px;
+    position: relative;
+    background: #3f3f3f;
+    border-radius: 5px;
+  }
+  .inputSlide .progress {
+    height: 100%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    border-radius: 5px;
+    background: #195FC7;
+  }
+  .range-input {
+    position: relative;
+  }
+  .range-input input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -5px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background: #195FC7;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  }
+  input[type="range"]::-moz-range-thumb {
+    height: 17px;
+    width: 17px;
+    border: none;
+    border-radius: 50%;
+    background: #195FC7;
+    pointer-events: auto;
+    -moz-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
   }
 </style>
 
 
 <form class="filter-form">
   {% for filter in collection.filters %}
-    <details class="filter-group">
+    <details class="filter-group" open>
       <summary class="filter-group-summary">
         <div>
           <span>{{ filter.label }}</span>
@@ -93,11 +165,6 @@
       </summary>
 
       <div class="filter-group-display">
-        <div class="filter-group-display__header">
-          {% if filter.active_values.size > 0 %}
-            <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset">Reset</a>
-          {% endif %}
-        </div>
 
         {% case filter.type %}
           {% when 'boolean', 'list' %}
@@ -118,15 +185,34 @@
           </ul>
           {% when 'price_range' %}
           <div class="filter-group-display__price-range">
-            <div class="filter-group-display__price-range-from">
-              <span>{{ cart.currency.symbol }}</span>
-              <input name="{{ filter.min_value.param_name }}"id="Filter-{{ filter.min_value.param_name }}"{% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}type="number"placeholder="0"min="0"max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
-              <label for="Filter-{{ filter.min_value.param_name }}">From</label>
+            <div class="inputSlide">
+              <div class="progress"></div>
             </div>
-            <div class="filter-group-display__price-range-to">
-              <span>{{ cart.currency.symbol }}</span>
-              <input name="{{ filter.max_value.param_name }}"id="Filter-{{ filter.max_value.param_name }}"{% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}type="number"placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"min="0"max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
-              <label for="Filter-{{ filter.max_value.param_name }}">To</label>
+            <div class="range-input">
+              <input
+                type="range"
+                class="range-min"
+                min="0"
+                max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                value="0"
+                step="100">
+              <input
+                type="range"
+                class="range-max"
+                min="0"
+                max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                value="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                step="100">
+            </div>
+
+            <div class="price-input">
+              <div class="filter-group-display__price-range-from price-input">
+                <input name="{{ filter.min_value.param_name }}"id="Filter-{{ filter.min_value.param_name }}"class="input-min"{% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}type="number"placeholder="0"min="0"max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"value="0">
+              </div>
+
+              <div class="filter-group-display__price-range-to price-input">
+                <input name="{{ filter.max_value.param_name }}"id="Filter-{{ filter.max_value.param_name }}"class="input-max"{% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}type="number"placeholder="{{ filter.range_max | money | replace: ',', '' }}"min="0"max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"value="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+              </div>
             </div>
           </div>
 
@@ -136,28 +222,79 @@
       </div>
     </details>
   {% endfor %}
-
-  <div class="active-filters">
-    <a
-      href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
-      class="active-filters__clear"
-      id="clear-all">Clear all</a>
-    {% for filter in collection.filters %}
-      {% if filter.type == "price_range" %}
-        {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
-          <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
-            {%- assign min_value = filter.min_value.value | default: 0 -%}
-            {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
-            {{ min_value | money }} - {{ max_value | money }} X
-          </a>
-        {%- endif -%}
-      {%- else -%}
-        {%- for filter_value in filter.active_values -%}
-          <a class="active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">
-            {{ filter.label }}: {{ filter_value.label }} X
-          </a>
-        {%- endfor -%}
-      {%- endif- %}
-    {%- endfor -%}
-  </div>
 </form>
+
+<script>
+  const rangeInput = document.querySelectorAll(".range-input input"),
+    priceInput = document.querySelectorAll(".price-input input"),
+    range = document.querySelector(".inputSlide .progress");
+  let priceGap = 1000;
+
+  priceInput.forEach((input) => {
+    input.addEventListener("input", (e) => {
+      let minPrice = parseInt(priceInput[0].value),
+        maxPrice = parseInt(priceInput[1].value);
+
+      if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+        if (e.target.className === "input-min") {
+          rangeInput[0].value = minPrice;
+          range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+        } else {
+          rangeInput[1].value = maxPrice;
+          range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+        }
+      }
+    });
+  });
+
+  rangeInput.forEach((input) => {
+    input.addEventListener("input", (e) => {
+      let minVal = parseInt(rangeInput[0].value),
+        maxVal = parseInt(rangeInput[1].value);
+
+      if (maxVal - minVal < priceGap) {
+        if (e.target.className === "range-min") {
+          rangeInput[0].value = maxVal - priceGap;
+        } else {
+          rangeInput[1].value = minVal + priceGap;
+        }
+      } else {
+        priceInput[0].value = minVal;
+        priceInput[1].value = maxVal;
+        range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+        range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+      }
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('scroll', function() {
+      var filterForm = document.querySelector('.filter-form');
+      var catalogContainer = document.querySelector('.catalog-container');
+      var scrollY = window.scrollY;
+      var computedStyle = getComputedStyle(filterForm);
+      var heightValue = computedStyle.height;
+      var heightInteger = parseInt(heightValue);
+
+      var containerHeight = catalogContainer.offsetHeight;
+      var formHeight = filterForm.offsetHeight;
+
+      if (scrollY <= 240) {
+        var maxHeight = 325 + (scrollY / 0.9);
+        console.log(maxHeight)
+        var topPosition = 3 - (scrollY / 240);
+        filterForm.style.maxHeight = maxHeight + 'px';
+        filterForm.style.top = topPosition + 'px';
+      } else {
+        var currentPosition = scrollY - 250;
+        filterForm.style.top = currentPosition + 'px';
+        if ((scrollY + window.innerHeight + heightInteger) - 900 >= containerHeight) {
+          var bottomPosition = containerHeight - formHeight;
+          filterForm.style.top = bottomPosition + 'px';
+        }
+      }
+    });
+  });
+</script>

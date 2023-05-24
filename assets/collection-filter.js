@@ -23,9 +23,7 @@ Shopify.queryParams = {};
 
       Shopify.queryParams.sort_by = value;
       var target = new URLSearchParams(Shopify.queryParams).toString();
-      console.log(target);
       const sortCol = new Sort('#sort-by', 'product-lists', target)
-      console.log(sortCol)
       target = sortCol.getData();
       $.get(target, function(data, status) {
         var outputData = $(data).find('.product-lists').html();
@@ -39,6 +37,8 @@ Shopify.queryParams = {};
   $(function() {
     $('body').on('change', 'form.filter-form input', function() {
       updateProductLists(getDataQuery());
+      // updateFilterLabel(getDataQuery());
+      updateActiveFilters(getDataQuery());
     });
     function getDataQuery() {
       var dataResult = '?';
@@ -56,8 +56,6 @@ Shopify.queryParams = {};
           : input_query = `${input_name}=${input_value}`;
         dataResult += input_query;
         dataInputLists.push(input_query);
-        console.log(dataInputLists);
-        console.log(dataResult);
 
       });
       console.log(window.location.protocol + '//' + window.location.host + window.location.pathname + dataResult)
@@ -74,6 +72,7 @@ Shopify.queryParams = {};
 
     function updateFilterLabel(url) {
       var target = url;
+      console.log("Update Filter Label" + target);
       $.get(target, function(data, status) {
         var dataOutputs = [];
         $(data).find('.filter-group-display__header-selected').each(function(index) {
@@ -85,4 +84,56 @@ Shopify.queryParams = {};
       });
     };
 
+    function updateActiveFilters(url) {
+      var target = url;
+      $.ajax({
+        url: target,
+        method: 'GET',
+        success: function(data) {
+          var dataOutputs = [];
+          $(data).find('.active-filters__remove-filter').each(function(index) {
+            var $filter = $(this);
+            var filterText = $filter.text().trim();
+            var filterHref = $filter.attr('href');
+    
+            // Create a new <a> element with a click event handler
+            var $newLink = $('<a>', {
+              'class': 'active-filters__remove-filter',
+              'href': filterHref,
+              'text': filterText
+            }).click(function(e) {
+              e.preventDefault();
+              removeActiveFilter(filterHref);
+            });
+    
+            dataOutputs[index] = $newLink[0].outerHTML;
+          });
+          $('#active-filters-container').html(dataOutputs.join(''));
+        },
+        error: function(xhr, status, error) {
+          console.log('AJAX Request Error:', error);
+        }
+      });
+    }
+    
+    function removeActiveFilter(url) {
+      $.ajax({
+        url: url,
+        method: 'GET',
+        success: function(data) {
+          // Handle the successful removal of the active filter
+          console.log('Active filter removed successfully.');
+          // Perform any additional actions or updates as needed
+    
+          // Refresh the active filters container
+          updateActiveFilters(getDataQuery());
+        },
+        error: function(xhr, status, error) {
+          console.log('AJAX Request Error:', error);
+        }
+      });
+    }
+    
+
+    
   });

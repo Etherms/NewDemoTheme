@@ -1,0 +1,15 @@
+@media (max-width: 1299px) {
+    form.filter-form {
+    display: none;
+    }
+    .product-lists{
+    width: 93% !important;
+    margin-right: auto !important;
+    }
+    .product-box{
+    padding: 25px 15px 0;
+    }
+    .product-card {
+        margin-top: 50px;
+    }
+}    

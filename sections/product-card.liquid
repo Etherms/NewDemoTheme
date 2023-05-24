@@ -2,16 +2,346 @@
   input.Add {
     margin-top: 500px;
   }
-</style>
+  .product--card-shop {
+    width: 400px;
+    height: 500px;
+    position: relative;
+    cursor: zoom-in;
+  }
+  .product--card-shop:first-of-type {
+    margin-top: -15px;
+  }
+  .product--card-shop img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .product-page--container {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0;
+  }
+  .product-page-images {
+    padding-right: 20px;
+  }
+  .product-page--product-desc {
+    margin-left: 100px;
+    max-width: 450px;
+  }
 
-<select name="id">
-  {% for variant in product.variants %}
-    <img
-      src="{{ image.variant.id | img_url:'1200x1200' }}"
-      style="width:400px; heigh: 400px;"
-      alt="">
-    <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
-      {{ variant.title }} - {{ variant.price | money }}
-    </option>
-  {% endfor %}
-</select>
+  .product-page--product-desc h3 {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+  }
+  .product-page--product-desc h1 {
+    font-weight: 600;
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: 36px;
+    color: #1e1e1e;
+  }
+  .product-page--product-desc span {
+    margin: 10px 0;
+    font-size: 18px;
+    font-family: 'Roboto', 'sans-serif';
+    letter-spacing: 1px;
+    font-weight: 300;
+    color: #222222;
+  }
+  .item--quantity {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+  }
+  .product-page--addToCart {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+  .product-page--addToCart > * {
+    height: 45px;
+  }
+  .product-cart-Btn {
+    margin-bottom: 15px;
+  }
+  .product-page--description p {
+    text-align: justify;
+    color: #484848;
+  }
+  button.product-cart-Btn {
+    color: black;
+    color: black;
+    border: 1px solid black;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  button.BuyNowBtn {
+    color: white;
+    background: black;
+    border: 1px solid black;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .item--quantity__value {
+    display: flex;
+    margin-top: 5px;
+  }
+  button#minus-btn {
+    border: none;
+    background: none;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background: none;
+    font-size: 22px;
+  }
+  button#plus-btn {
+    border: none;
+    background: none;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background: none;
+    font-size: 22px;
+  }
+  button#plus-btn,
+  button#minus-btn {
+    outline: none;
+  }
+  input#count[type=text] {
+    width: 85px;
+    height: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #2c2c2c;
+    border: none;
+    background: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: none;
+  }
+  button.product-btn1.product-cart-Btn:hover {
+    box-shadow: 0 0 6px 0 black;
+  }
+  button.BuyNowBtn:hover {
+    box-shadow: 0 0 8px 0 black;
+  }
+  button.disabled {
+    cursor: not-allowed;
+  }
+
+  .side-product-shop:nth-of-type(4) {
+    top: 382px;
+  }
+
+  .side-product-shop {
+    position: absolute;
+    width: 100px;
+    top: 220px;
+    left: 30px;
+    height: 124px;
+    border-radius: 7px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .side-product-shop:hover {
+    border: 1px solid black;
+  }
+  .side-product-shop img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .product--card-shop:nth-of-type(3) {
+    display: none;
+  }
+
+
+  /*Magnifying css*/
+  .product--card-shop span.material-symbols-outlined {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    border: 1px solid #525252;
+    border-radius: 22px;
+    padding: 2px;
+    color: #343232;
+  }
+
+  .magnified-product-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 22;
+    display: none;
+    width: 98.9vw;
+    background: #cdcdcd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .magnified-product-container > * {
+    margin-top: 29px;
+  }
+  .magnified-product-shop {
+    width: 523px;
+    height: 655px;
+  }
+  img.magnified-image {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .magnified-product-container span.material-symbols-outlined {
+    position: fixed;
+    right: 30px;
+    top: 0;
+    z-index: 21;
+    background: white;
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: ;
+  }
+</style>
+<div class="product-page--container">
+  {% if product.images.size > 0 %}
+    <div class="product-page-images">
+      {% for image in product.images %}
+        <div class="product--card-shop">
+          <img src="{{ image.src | img_url: 'master' }}" alt="{{ product.title }}" />
+          <span class="material-symbols-outlined">
+            zoom_in
+          </span>
+        </div>
+        <div class="side-product-shop">
+          <img src="{{ image.src | img_url: 'master' }}" alt="{{ product.title }}">
+        </div>
+      {% endfor %}
+      <div class="magnified-product-container">
+        <span class="material-symbols-outlined">
+          close
+        </span>
+        {% for image in product.images %}
+          <div class="magnified-product-shop">
+            <img
+              class="magnified-image"
+              src="{{ image.src | img_url: 'master' }}"
+              alt="{{ product.title }}">
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  {% else %}
+    <p>No image available</p>
+  {% endif %}
+
+  <div class="product-page--product-desc">
+    <h3>{{ product.vendor }}</h3>
+    <h1>{{ product.title }}</h1>
+    <span>{{ product.price | money }}</span>
+    <div class="item--quantity">
+      <label for="quantity">Quantity:</label>
+      <div class="item--quantity__value">
+        <button class="button--down-count" id="minus-btn">-</button>
+        <input
+          id="count"
+          type="text"
+          name="quantity"
+          min="1"
+          value="1">
+        <button class="button--up-count" id="plus-btn">+</button>
+      </div>
+    </div>
+    {% if product.available %}
+      <div class="product-page--addToCart">
+        <button type="button" class="product-btn1 product-cart-Btn">Add To Cart</button>
+        <button type="button" class="BuyNowBtn">Buy it now</button>
+      </div>
+    {% else %}
+      <div class="product-page--addToCart">
+        <button
+          disabled
+          type="button"
+          class="product-btn2 product-cart-Btn disabled">Sold Out</button>
+        <button
+          disabled
+          type="button"
+          class="BuyNowBtn disabled">Buy it now</button>
+      </div>
+    {% endif %}
+    <div class="product-page--description">
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const minusBtn = document.getElementById("minus-btn");
+  const count = document.getElementById("count");
+  const plusBtn = document.getElementById("plus-btn");
+
+  let countNum = parseInt(count.value);
+
+  minusBtn.addEventListener("click", () => {
+    if (countNum > 1) {
+      countNum -= 1;
+      count.value = countNum;
+    }
+  });
+
+  plusBtn.addEventListener("click", () => {
+    countNum += 1;
+    count.value = countNum;
+  });
+</script>
+
+<script>
+  const fourthSideProductShop = document.querySelector('.side-product-shop:nth-of-type(4)');
+  const thirdProductCardShop = document.querySelector('.product--card-shop:nth-of-type(3)');
+  const SecondSideProductShop = document.querySelector('.side-product-shop:nth-of-type(2)');
+  const firstProductCardShop = document.querySelector('.product--card-shop:nth-of-type(1)');
+
+  fourthSideProductShop.addEventListener('click', () => {
+    console.log("Fourth picture pressed")
+    thirdProductCardShop.style.display = 'block';
+    firstProductCardShop.style.display = 'none';
+  });
+  SecondSideProductShop.addEventListener('click', () => {
+    console.log("Second picture pressed")
+    firstProductCardShop.style.display = 'block';
+    thirdProductCardShop.style.display = 'none';
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    var magnifiedProductContainer = document.querySelector('.magnified-product-container');
+    magnifiedProductContainer.style.display = 'none';
+
+// When product--card-shop is clicked
+    var productCardShop = document.querySelector('.product--card-shop:nth-of-type(1)');
+    productCardShop.addEventListener('click', function() {
+      console.log("card pressed")
+      magnifiedProductContainer.style.display = 'flex';
+    });
+    // When product--card-shop is clicked
+    var productsecondCardShop = document.querySelector('.product--card-shop:nth-of-type(3)');
+    productsecondCardShop.addEventListener('click', function() {
+      console.log("card pressed")
+      magnifiedProductContainer.style.display = 'flex';
+    });
+
+// When material-symbols-outlined with content 'close' is clicked
+var materialSymbols = document.querySelectorAll('.material-symbols-outlined');
+materialSymbols.forEach(function(symbol) {
+  if (symbol.textContent.trim() === 'close') {
+    symbol.addEventListener('click', function() {
+      magnifiedProductContainer.style.display = 'none';
+    });
+  }
+});
+  });
+</script>

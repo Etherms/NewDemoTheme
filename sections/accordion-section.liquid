@@ -1,4 +1,26 @@
 <style>
+
+  #imageOne {
+    background-image: url('{{ section.settings.image1 | img_url: '1200x1200' }}');
+  }
+  #imageTwo {
+    background-image: url('{{ section.settings.image2 | img_url: '1200x1200' }}');
+  }
+  #imageThree {
+    background-image: url('{{ section.settings.image3 | img_url: '1200x1200' }}');
+  }
+
+  .img-container {
+    width: 100%;
+    height: 100%;
+  }
+  .image-class {
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
   #imageTwo {
     display: none;
   }
@@ -78,7 +100,8 @@
     flex: 1;
   }
   .img-container {
-    width: 655px;
+    max-width: 655px;
+    min-width:380px ;
   }
   .accordion-item:last-of-type {
     border-radius: 0;
@@ -205,55 +228,30 @@
   </div>
 </div>
 
-<style>
-  #imageOne {
-    background-image: url('{{ section.settings.image1 | img_url: '1200x1200' }}');
-  }
-  #imageTwo {
-    background-image: url('{{ section.settings.image2 | img_url: '1200x1200' }}');
-  }
-  #imageThree {
-    background-image: url('{{ section.settings.image3 | img_url: '1200x1200' }}');
-  }
-
-  .img-container {
-    width: 100%;
-    height: 100%;
-  }
-  .image-class {
-    width: 100%;
-    height: 100%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
-</style>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 <script>
-  var collapseOne = document.getElementById("collapseOne");
-  var imageOne = document.getElementById("imageOne");
-  var collapseTwo = document.getElementById("collapseTwo");
-  var imageTwo = document.getElementById("imageTwo");
-  var collapseThree = document.getElementById("collapseThree");
-  var imageThree = document.getElementById("imageThree");
+  var accordionItems = document.querySelectorAll(".accordion-item");
+  var imageContainers = document.querySelectorAll(".image-class");
 
+  accordionItems.forEach(function(item, index) {
+    var collapse = item.querySelector(".accordion-collapse");
+    var image = imageContainers[index];
 
-  collapseOne.addEventListener("shown.bs.collapse", function() {
-    imageOne.style.display = "block";
-    imageTwo.style.display = "none"
-    imageThree.style.display = "none"
+    collapse.addEventListener("shown.bs.collapse", function() {
+      hideAllImages();
+      image.style.display = "block";
+      
+      
+    });
   });
-  collapseThree.addEventListener("shown.bs.collapse", function() {
-    imageThree.style.display = "block";
-    imageOne.style.display = "none"
-    imageTwo.style.display = "none"
-  });
-  collapseTwo.addEventListener("shown.bs.collapse", function() {
-    imageTwo.style.display = "block";
-    imageOne.style.display = "none";
-    imageThree.style.display = "none"
-  });
+
+  function hideAllImages() {
+    imageContainers.forEach(function(image) {
+      image.style.display = "none";
+    });
+  }
 </script>
+
 
 {% schema %}
   {

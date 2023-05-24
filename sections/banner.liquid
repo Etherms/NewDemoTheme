@@ -1,12 +1,6 @@
 
-
-<style>
-
-
-</style>
-
-
-<div class=" swiper">
+<div class=" swiper" data-aos="fade-up"
+data-aos-duration="1500">
   <div class="overlay">
     {% if section.settings.banner-title != blank %}
       <h2 class="banner-title">{{ section.settings.banner-title }}</h2>
@@ -43,11 +37,6 @@ pause
     direction: 'horizontal',
     slidesPerGroup: 1,
     loop: true,
-    spaceBetween: 30,
-    effect:'fade',
-    fadeEffect:{
-      crossFade:true,
-    },
     autoplay:{
       delay:3000,
       disableOnInteraction:false,
