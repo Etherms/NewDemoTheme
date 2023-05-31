@@ -33,13 +33,12 @@
   }
   .accordion-Section {
     min-width: 380px;
-    background-color: #2B2A2A;
-    min-height: 418px;
+    min-height: 483px;
     display: flex;
   }
   .accordion-item {
     border: none;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid;
     border-radius: none;
   }
   button.accordion-button {
@@ -53,22 +52,15 @@
     box-shadow: none !important;
   }
 
-  .accordion-button:not(.collapsed) {
-    color: white;
-    background-color: #2B2A2A !important;
-    box-shadow: none !important;
-  }
-  button.accordion-button.collapsed {
-    background: #2B2A2A;
-    color: white;
-  }
+
   .accordion-body {
-    background: #2B2A2A;
+    background: #242424;
     color: white;
     font-size: 17px;
     font-weight: 400;
     padding-bottom: 33px;
     line-height: 31px;
+    text-align: justify;
   }
   .accordion-button:after {
     background-image: url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
@@ -86,6 +78,21 @@
     margin-top: 16px;
     font-weight: 500;
   }
+
+  .accordion-button:not(.collapsed) {
+    color: white;
+    background: #292a2a;
+  }
+  button.accordion-button.collapsed {
+    background: #292a2a;
+    color: white;
+  }
+  div#Accordion-Container {
+    background: #292a2a;
+  }
+  .accordion-item {
+    border-color: white;
+  }
   {% comment %}
     .image-class {
       width: 728px;
@@ -101,7 +108,7 @@
   }
   .img-container {
     max-width: 655px;
-    min-width:380px ;
+    min-width: 380px;
   }
   .accordion-item:last-of-type {
     border-radius: 0;
@@ -136,7 +143,11 @@
 </style>
 
 
-<div class="accordion" id="Accordion-Container">
+<div
+  class="accordion"
+  id="Accordion-Container"
+  data-aos="zoom-in-up"
+  data-aos-duration="1500">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button
@@ -146,7 +157,7 @@
         data-bs-target="#collapseOne"
         aria-expanded="true"
         aria-controls="collapseOne">
-        Men's Shoes
+        Summer Footwear
       </button>
     </h2>
     <div
@@ -155,7 +166,7 @@
       aria-labelledby="headingOne"
       data-bs-parent="#Accordion-Container">
       <div class="accordion-body">
-        They come in a variety of styles, including dress shoes, athletic shoes, boots, and sandals, and are made from a range of materials such as leather, suede, and canvas. Men's shoes are an important part of a man's wardrobe and can make a significant impact on his overall style and appearance.
+        Step into a realm of sun-kissed adventures and carefree wanderings with summer footwear that exudes an enchanting blend of style and comfort. Embrace the whimsical spirit of the season as you slip your feet into a tapestry of vibrant colors, delicate textures, and playful patterns.
         <a href="{{ section.settings.mensLink }}" class="accordion-btn button">Shop Now
           <span class="material-symbols-outlined arrow-btn">
             arrow_forward
@@ -173,7 +184,7 @@
         data-bs-target="#collapseTwo"
         aria-expanded="false"
         aria-controls="collapseTwo">
-        Women's Shoes
+        Fit to Go All Out
       </button>
     </h2>
     <div
@@ -182,7 +193,7 @@
       aria-labelledby="headingTwo"
       data-bs-parent="#Accordion-Container">
       <div class="accordion-body">
-        Not only functional but also serve as a fashion statement. They can elevate an outfit, add a pop of color, or complement a specific style. With a vast array of designs, colors, and materials, women's shoes provide endless possibilities for self-expression and personal style.
+        Dive headfirst into a world of relentless passion and unwavering commitment. These extraordinary companions wrap your feet in a cloak of unstoppable energy, propelling you towards greatness with every stride. The sleek design, meticulously crafted with an artistic fusion of bold lines and dynamic patterns, becomes an expression of your unyielding drive.
         <a href="{{ section.settings.womensLink }}" class="accordion-btn button">Shop Now
           <span class="material-symbols-outlined arrow-btn">
             arrow_forward
@@ -200,7 +211,7 @@
         data-bs-target="#collapseThree"
         aria-expanded="false"
         aria-controls="collapseThree">
-        Kid's Shoes
+        Styles for All-Day Play
       </button>
     </h2>
     <div
@@ -209,7 +220,7 @@
       aria-labelledby="headingThree"
       data-bs-parent="#Accordion-Container">
       <div class="accordion-body">
-        Kids shoes are created to ensure the well-being of children's feet as they grow. They offer comfort, support, and protection, all while being available in various sizes, colors, and styles. With a plethora of playful, colorful designs and more formal styles, kids shoes are not only practical but also a vital aspect of a child's fashion.
+        A collection that effortlessly blends fashion and comfort, designed to accompany you throughout the day. Each pair becomes a vibrant expression of your unique style, making a statement without uttering a word. Picture slipping into shoes that effortlessly transition from morning to night, embracing versatility like a trusted companion.
         <a href="{{ section.settings.kidsLink }}" class="accordion-btn button">Shop Now
           <span class="material-symbols-outlined arrow-btn">
             arrow_forward
@@ -220,7 +231,10 @@
   </div>
 </div>
 
-<div class="accordion-img">
+<div
+  class="accordion-img"
+  data-aos="zoom-in-up"
+  data-aos-duration="1500">
   <div class="img-container">
     <div class="image-class" id="imageOne"></div>
     <div class="image-class" id="imageTwo"></div>
@@ -240,8 +254,8 @@
     collapse.addEventListener("shown.bs.collapse", function() {
       hideAllImages();
       image.style.display = "block";
-      
-      
+
+
     });
   });
 

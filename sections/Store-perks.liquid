@@ -46,7 +46,10 @@
   }
 </style>
 
-<div class="perksContainer">
+<div
+  class="perksContainer"
+  data-aos="zoom-in"
+  data-aos-duration="3000">
   {% for block in section.blocks %}
     {% case block.type %}
       {% when 'delivery' %}

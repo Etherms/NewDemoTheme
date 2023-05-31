@@ -1,14 +1,45 @@
 {% assign background = section.settings.body_text %}
 
 <style>
-  .banner-area {
-    background: {{ background}}
-    ;
+  .parallax--tittle h1 {
+    text-align: center;
+    font-family: 'Montserrat', 'sans-serif';
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+  }
+  .parallax--tittle {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  .parallax--tittle a {
+    text-decoration: none;
+    border: 1px solid;
+    padding: 8px 18px;
+    border-radius: 23px;
+    text-align: center;
+    margin: auto;
+    transition: all 0.5s;
+  }
+
+  .parallax--tittle a:hover {
+    transform: scale(1.1);
   }
 </style>
 
-<div class="banner-area" >
-  <div class="parallax-swiper-container main-slider" data-aos="fade-right" data-aos-duration="3000" style="overflow: hidden;">
+<div class="banner-area">
+  <div
+    class="parallax--tittle"
+    data-aos="fade-up"
+    data-aos-duration="2500">
+    <h1>STORY IN EVERY STEP</h1>
+    <a href="{{ section.settings.shop_link }}">View all</a>
+  </div>
+  <div
+    class="parallax-swiper-container main-slider"
+    data-aos="fade-right"
+    data-aos-duration="3000"
+    style="overflow: hidden;">
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
 
@@ -41,7 +72,11 @@
     </div>
   </div>
 
-  <div class="parallax-swiper-container thumb-slider" data-aos="fade-left" data-aos-duration="3000" style="overflow: hidden;">
+  <div
+    class="parallax-swiper-container thumb-slider"
+    data-aos="fade-left"
+    data-aos-duration="3000"
+    style="overflow: hidden;">
     <div class="swiper-wrapper" role="navigation">
       {% for block in section.blocks %}
         <div class="swiper-slide">
@@ -127,9 +162,9 @@
     "class": "parallax_banner",
     "settings": [
       {
-        "type": "color",
-        "id": "body_text",
-        "label": "Background Color"
+        "type": "url",
+        "id": "shop_link",
+        "label": "Button link"
       }
     ],
     "presets": [

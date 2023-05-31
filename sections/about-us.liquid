@@ -2,7 +2,7 @@
   .aboutUs-header {
     width: 95%;
     margin: 70px auto auto;
-    min-height: 300px;
+    min-height: 195px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,6 +19,7 @@
     font-family: 'Roboto';
     color: white;
     font-weight: 600;
+    text-shadow: 6px 4px 1px #181b2a;
   }
   .aboutUs-body {
     width: 95%;
@@ -71,33 +72,278 @@
     margin: auto;
     display: flex;
     align-items: center;
-    background: #111111;
   }
   .AboutUs-text-design h1 {
     font-size: 4vw;
     font-family: 'Roboto', 'sans-serif';
     font-weight: 600;
     line-height: 70px;
-    color: white;
     padding-left: 30px;
   }
 </style>
-<div class="aboutUs-header">
+
+
+<style>
+  /*Style on the updated*/
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+
+  .aboutUs1 {
+    display: flex;
+    min-height: 590px;
+    overflow: hidden;
+  }
+  .aboutUs1--image {
+    flex: 2;
+    position: relative;
+  }
+  .aboutUs--img.imagesrc1 {
+    width: 380px;
+    position: absolute;
+    top: 145px;
+    left: 420px;
+  }
+  img.aboutUs--img.imagesrc2 {
+    width: 350px;
+    position: absolute;
+    top: 12px;
+    left: 80px;
+  }
+  .aboutUs1--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    padding: 0 50px;
+  }
+  span.store--behind {
+    font-weight: 300;
+    font-size: 15px;
+    font-family: 'Roboto', 'sans-serif';
+  }
+  h1.aboutUs1--title {
+    padding: 15px 0;
+    font-weight: 500;
+    font-family: 'Roboto', 'sans-serif';
+  }
+  p.aboutUs1--desc {
+    text-align: justify;
+    font-weight: 400;
+    letter-spacing: 2px;
+  }
+
+  .aboutUs--Header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 67px 10px;
+  }
+  .aboutUs--Header h1,
+  .aboutUs--Header span {
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: 'Roboto';
+  }
+  .aboutUs--Header h1 {
+    color: #0e43bb;
+    font-weight: 600;
+    font-size: 30px;
+  }
+  .aboutUs--Header span {
+    font-size: 24px;
+    padding: 0 228px;
+    font-weight: 500;
+    letter-spacing: 3px;
+  }
+</style>
+<style>
+  /*Style on the updated responsive*/
+
+  @media(max-width:1250px) {
+    img.aboutUs--img.imagesrc2 {
+      width: 315px;
+    }
+    .aboutUs--img.imagesrc1 {
+      width: 340px;
+      left: 385px;
+    }
+  }
+
+  @media(max-width:1120px) {
+    img.aboutUs--img.imagesrc2 {
+      width: 270px;
+      top: 50px;
+    }
+    .aboutUs--img.imagesrc1 {
+      width: 280px;
+      left: 338px;
+    }
+  }
+
+  @media(max-width:960px) {
+    img.aboutUs--img.imagesrc2 {
+      width: 230px;
+    }
+    .aboutUs--img.imagesrc1 {
+      width: 216px;
+      left: 297px;
+    }
+  }
+
+  @media(max-width:820px) {
+    img.aboutUs--img.imagesrc2 {
+      width: 187px;
+      top: 99px;
+    }
+
+    .aboutUs--img.imagesrc1 {
+      width: 178px;
+      top: 168px;
+      left: 255px;
+    }
+  }
+
+  @media(max-width:708px) {
+    img.aboutUs--img.imagesrc2 {
+      width: 180px;
+      position: absolute;
+      top: 99px;
+      left: 40px;
+    }
+    .aboutUs--img.imagesrc1 {
+      width: 140px;
+      position: absolute;
+      top: 189px;
+      left: 214px;
+    }
+  }
+
+  @media(max-width:680px) {
+    .aboutUs1 {
+      flex-direction: column;
+    }
+    .aboutUs--img.imagesrc1 {
+      width: 235px;
+      top: 37%;
+      left: 365px;
+    }
+    img.aboutUs--img.imagesrc2 {
+      width: 300px;
+      position: absolute;
+      top: 9%;
+      left: 12%;
+    }
+    .aboutUs1--image {
+      min-height: 520px;
+    }
+    .aboutUs1--text {
+      padding: 0 45px;
+    }
+  }
+
+  @media(max-width:612px) {
+    img.aboutUs--img.imagesrc2 {
+      width: 285px;
+      position: absolute;
+      top: 9%;
+      left: 8%;
+    }
+    img.aboutUs--img.imagesrc2 {
+      width: 250px;
+      position: absolute;
+      top: 9%;
+      left: 8%;
+    }
+  }
+  @media(max-width:600px) {
+    .aboutUs1--image {
+      min-height: 379px;
+    }
+    .aboutUs--img.imagesrc1 {
+      width: 150px;
+      top: 32%;
+      left: 55%;
+    }
+    img.aboutUs--img.imagesrc2 {
+      width: 197px;
+      top: 7%;
+      left: 23%;
+    }
+  }
+  @media(max-width:440px) {
+    img.aboutUs--img.imagesrc2 {
+      width: 197px;
+      top: 7%;
+      left: 13%;
+    }
+  }
+</style>
+<div
+  class="aboutUs-header"
+  data-aos="fade-up"
+  data-aos-duration="3000">
   <h1>GET TO KNOW US</h1>
 </div>
-<div class="aboutUs-body">
-  <p class="AboutUs-text1">
-    Welcome to Sole Connection, your one-stop-shop for all your shoe apparel needs! As the owner of this store, I want to share with you the origin and back story of how we came to be. It all started with my love for sneakers and a desire to create a space where fellow sneakerheads could come together and indulge in their passion. After years of working in the shoe industry, I finally decided to take the leap and open up my own store.
-  </p>
-  <p class="AboutUs-text2">At Sapatoes, we specialize in selling top-quality shoe apparel from some of the biggest brands in the industry. Our selection includes sneakers, boots, sandals, and more, all carefully curated to provide our customers with the latest and greatest styles. We pride ourselves on offering a personalized shopping experience, where our knowledgeable staff is always on hand to help customers find the perfect pair of shoes. Whether you're looking for something to wear for a night out or a comfortable pair of shoes for everyday wear, we have something for everyone. Come visit us at Sole Connection and let us help you find your perfect fit!</p>
+
+
+<div
+  class="aboutUs--Header"
+  data-aos="fade-up"
+  data-aos-duration="3000">
+  <h1>Passion for footwear</h1>
+  <span>"We have a genuine passion for shoes and fashion, We absolutely love sharing our unwavering enthusiasm for footwear with customers, creating a one-of-a-kind shopping experience that truly reflects our deep passion."
+  </span>
 </div>
-<div class="AboutUs-image">
+<div class="aboutUs1 aboutUs1--container">
+  <div
+    class="aboutUs1--image"
+    data-aos="fade-right"
+    data-aos-offset="500"
+    data-aos-easing="ease-in-sine">
+    <img
+      src="{{ section.settings.body_image | img_url: '1200x1200'}}"
+      alt=""
+      class="aboutUs--img imagesrc2">
+    <img
+      src="{{ section.settings.second_body_image | img_url: '1200x1200'}}"
+      alt=""
+      class="aboutUs--img imagesrc1">
+  </div>
+  <div
+    class="aboutUs1--text"
+    data-aos="fade-left"
+    data-aos-offset="500"
+    data-aos-easing="ease-in-sine">
+    <span class="store--behind">
+      BEHIND SAPATOES
+    </span>
+    <h1 class="aboutUs1--title">
+      WHO WE ARE?
+    </h1>
+    <p class="aboutUs1--desc">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quibusdam vitae ex. Ipsum corporis voluptate dolores quod alias, vero voluptatem dolor officiis, ea ipsa provident, quo inventore officia velit corrupti unde? Dolorum in esse, enim excepturi vero accusamus omnis odit.
+    </p>
+  </div>
+</div>
+
+
+<div
+  class="AboutUs-image"
+  data-aos="fade-up"
+  data-aos-duration="3000">
   <div class="au-image1 au"></div>
   <div class="au-image2 au"></div>
   <div class="au-image3 au"></div>
   <div class="au-image4 au"></div>
 </div>
-<div class="AboutUs-text-design">
+<div
+  class="AboutUs-text-design"
+  data-aos="fade-up"
+  data-aos-duration="3000">
   <h1>TIMELESS DESIGN.<br>EFFORTLESS STYLE.</h1>
 </div>
 
@@ -129,6 +375,14 @@
         "type": "image_picker",
         "id": "image4",
         "label": "Set Fourth Image"
+      }, {
+        "type": "image_picker",
+        "id": "body_image",
+        "label": "Provide the image of the first Body Image"
+      }, {
+        "type": "image_picker",
+        "id": "second_body_image",
+        "label": "Provide the image of the second Body Image"
       }
     ],
     "presets": [

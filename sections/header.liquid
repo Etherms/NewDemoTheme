@@ -76,39 +76,38 @@
   /* Navbar DropDown Style*/
   li.navbar-dropdown {
     text-decoration: none;
-    font-family: Roboto,sans-serif;
+    font-family: Roboto, sans-serif;
     font-weight: 500;
-    text-shadow: none!important;
-    color: var(--color1)!important;
+    text-shadow: none !important;
+    color: var(--color1) !important;
     display: flex;
     margin-right: 15px !important;
     cursor: pointer;
     user-select: none;
-}
-.link--inside {
+  }
+  .link--inside {
     position: absolute;
     top: 43px;
     left: 118px;
-    background: white;
     padding: 5px;
     display: none;
-    box-shadow: 0px 6px 6px 0px #585858;
-}
-.link--inside > * {
+    box-shadow: 0 6px 6px 0 #585858;
+  }
+  .link--inside > * {
     margin-top: 13px;
-    margin-right: 0px !important;
+    margin-right: 0 !important;
     font-family: 'Roboto';
     font-weight: 500;
     padding: 6px;
-}
-.link--inside li:hover {
+  }
+  .link--inside li:hover {
     background: #b3b3b3;
-}
-.link--inside li a {
+  }
+  .link--inside li a {
     width: 100%;
     height: 100%;
     display: block;
-}
+  }
 </style>
 
 
@@ -133,17 +132,19 @@
       <ul>
         {% for link in section.settings.menu.links -%}
           {% if link.links.size > 0 -%}
-            <li class="navbar-dropdown" onclick="toggleLinkInside(this)"> {{ link.title }}  <span class="material-symbols-outlined">
-              expand_more
+            <li class="navbar-dropdown" onclick="toggleLinkInside(this)">
+              {{ link.title }}
+              <span class="material-symbols-outlined">
+                expand_more
               </span>
-              </li>
+            </li>
             <div class="link--inside">
               {% for child_link in link.links %}
                 <li>{{ child_link.title | link_to: child_link.url }}</li>
               {% endfor %}
             </div>
           {%- else -%}
-            <li>{{ link.title | link_to: link.url}}</li>
+            <li>{{ link.title | link_to: link.url }}</li>
           {%- endif %}
         {%- endfor %}
       </ul>
@@ -168,7 +169,7 @@
     <div class="button--darkmode desktop-view">
       <p class="button__title">Dark Mode</p>
       <label class="switch--darkmode">
-        <input type="checkbox">
+        <input type="checkbox" class="darkMode-btn">
         <div class="darkmode darkmode--round"></div>
       </label>
     </div>
@@ -178,31 +179,30 @@
   <div class="button--darkmode mobile-view">
     <p class="button__title">Dark Mode</p>
     <label class="switch--darkmode">
-      <input type="checkbox">
+      <input type="checkbox" class="darkMode-btn">
       <div class="darkmode darkmode--round"></div>
     </label>
   </div>
   <ul>
     {% for link in section.settings.menu.links -%}
       {% if link.links.size > 0 -%}
-        <li class="navbar-dropdown" onclick="toggleLinkInside(this)"> {{ link.title }}  <span class="material-symbols-outlined">
-          expand_more
+        <li class="navbar-dropdown toggle-dropdown" onclick="toggleLinkInside(this)">
+          {{ link.title }}
+          <span class="material-symbols-outlined">
+            expand_more
           </span>
-          </li>
-        <div class="link--inside">
+        </li>
+        <div class="link--inside--toggle">
           {% for child_link in link.links %}
             <li>{{ child_link.title | link_to: child_link.url }}</li>
           {% endfor %}
         </div>
       {%- else -%}
-        <li>{{ link.title | link_to: link.url}}</li>
+        <li>{{ link.title | link_to: link.url }}</li>
       {%- endif %}
     {%- endfor %}
   </ul>
 </div>
-
-
-
 
 
 
@@ -217,9 +217,11 @@
 
 <script>
   const toggleLinkInside = (element) => {
-  const linkInside = element.nextElementSibling;
-  linkInside.style.display = (linkInside.style.display === 'block') ? 'none' : 'block';
-};
+    const linkInside = element.nextElementSibling;
+    linkInside.style.display = (linkInside.style.display === 'block')
+      ? 'none'
+      : 'block';
+  };
 </script>
 
 

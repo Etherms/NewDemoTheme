@@ -2,16 +2,32 @@
 
 
 <style>
-  .collection {
-    background: {{ background}}
-    ;
+  .collection-container {
+    overflow: hidden;
+  }
+  .collection-title {
+    width: 90%;
+  }
+  .collection-container h1 {
+    text-transform: uppercase;
+    font-family: 'Montserrat', 'sans-serif';
+    text-align: start;
+    letter-spacing: 3px;
   }
 </style>
-<div class="collection-container"  style="overflow: hidden;">
-  <div class="grid-container"style="overflow: hidden;"  data-aos="fade-up"
-  data-aos-anchor-placement="top-bottom" data-aos-duration="2500" >
+<div class="collection-container">
+  <div
+    class="collection-title"
+    data-aos="zoom-in-right"
+    data-aos-duration="2000">
+    <h1>popular picks</h1>
+  </div>
+  <div
+    class="grid-container"
+    data-aos="flip-up"
+    data-aos-duration="2500">
     {% for collection in shop.metaobjects.list_of_collections.values %}
-      <div class="grid-item" >
+      <div class="grid-item">
         <a href="{{collection.routes.all_products_collection_url}}"><img src="{{ collection.picture | img_url: '1000x' }}" alt="">
           <h2>{{ collection.name }}</h2>
         </a>

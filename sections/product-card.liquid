@@ -1,4 +1,14 @@
 <style>
+  .product-page--container {
+    min-width: 380px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 100px 0;
+  }
+  .product-page-images {
+    padding-right: 10px;
+  }
   input.Add {
     margin-top: 500px;
   }
@@ -8,24 +18,16 @@
     position: relative;
     cursor: zoom-in;
   }
-  .product--card-shop:first-of-type {
-    margin-top: -15px;
-  }
   .product--card-shop img {
     max-width: 100%;
     max-height: 100%;
+    border-radius: 15px;
   }
-  .product-page--container {
-    display: flex;
-    justify-content: center;
-    margin: 100px 0;
-  }
-  .product-page-images {
-    padding-right: 20px;
-  }
+
   .product-page--product-desc {
-    margin-left: 100px;
+    margin-left: 45px;
     max-width: 450px;
+    padding-right: 45px;
   }
 
   .product-page--product-desc h3 {
@@ -37,7 +39,6 @@
     font-weight: 600;
     font-family: 'Montserrat', 'sans-serif';
     font-size: 36px;
-    color: #1e1e1e;
   }
   .product-page--product-desc span {
     margin: 10px 0;
@@ -45,7 +46,6 @@
     font-family: 'Roboto', 'sans-serif';
     letter-spacing: 1px;
     font-weight: 300;
-    color: #222222;
   }
   .item--quantity {
     display: flex;
@@ -65,7 +65,7 @@
   }
   .product-page--description p {
     text-align: justify;
-    color: #484848;
+
   }
   button.product-cart-Btn {
     color: black;
@@ -89,18 +89,12 @@
   button#minus-btn {
     border: none;
     background: none;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
     background: none;
     font-size: 22px;
   }
   button#plus-btn {
     border: none;
     background: none;
-    border-right: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
     background: none;
     font-size: 22px;
   }
@@ -113,11 +107,8 @@
     height: 40px;
     text-align: center;
     font-size: 16px;
-    color: #2c2c2c;
     border: none;
     background: none;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
     outline: none;
   }
   button.product-btn1.product-cart-Btn:hover {
@@ -144,9 +135,7 @@
     overflow: hidden;
     cursor: pointer;
   }
-  .side-product-shop:hover {
-    border: 1px solid black;
-  }
+
   .side-product-shop img {
     max-width: 100%;
     max-height: 100%;
@@ -203,6 +192,103 @@
     cursor: pointer;
     user-select: ;
   }
+  .product-page-cart-btn {
+    background: none;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+  @media(min-width:1225px) {
+    .product-page--product-desc {
+      max-width: 600px;
+      padding-right: 70px;
+      margin-right: -130px;
+      margin-left:0px;
+  }
+  .product--card-shop {
+    margin-left: 90px;
+}
+  }
+
+  @media(max-width:1224px) {
+    .product--card-shop {
+      width: 340px;
+      height: 423px;
+      margin-top: 35px !important;
+      margin-left: 147px;
+    }
+  }
+
+  @media(max-width:966px) {
+    .product--card-shop {
+      width: 334px;
+      height: 415px;
+      margin-top: -35px !important;
+      margin-left: 53px;
+    }
+    .side-product-shop {
+      top: 548px;
+      left: 110px;
+    }
+    .side-product-shop:nth-of-type(4) {
+      top: 548px;
+      left: 258px;
+    }
+  }
+  @media(max-width:767px) {
+    .product-page--container {
+      margin 110px 0;
+      flex-direction: column;
+    }
+    .product-page-images {
+      display: flex;
+      justify-content: center;
+    }
+    .product--card-shop {
+      width: 326px;
+      margin-top: 0 !important;
+      margin-left: 150px;
+    }
+    .side-product-shop {
+      top: 152px;
+      left: 84px;
+    }
+    .side-product-shop:nth-of-type(4) {
+      top: 282px;
+      left: 84px;
+    }
+    .product-page--product-desc {
+      margin-left: 0;
+      max-width: none;
+      padding: 0 46px;
+    }
+  }
+  @media(max-width:579px) {
+    .side-product-shop {
+      left: 56px;
+    }
+    .side-product-shop:nth-of-type(4) {
+      left: 56px;
+    }
+  }
+  @media(max-width:523px) {
+    .side-product-shop {
+      left: 40px;
+    }
+    .side-product-shop:nth-of-type(4) {
+      left: 40px;
+    }
+  }
+  @media(max-width:500px) {
+    .product-page-images {
+      height: 82vw;
+    }
+  }
+  @media(max-width:340px) {
+    .product-page-images {
+      height: 268px;
+    }
+  }
 </style>
 <div class="product-page--container">
   {% if product.images.size > 0 %}
@@ -241,6 +327,7 @@
     <h3>{{ product.vendor }}</h3>
     <h1>{{ product.title }}</h1>
     <span>{{ product.price | money }}</span>
+
     <div class="item--quantity">
       <label for="quantity">Quantity:</label>
       <div class="item--quantity__value">
@@ -255,10 +342,24 @@
       </div>
     </div>
     {% if product.available %}
-      <div class="product-page--addToCart">
-        <button type="button" class="product-btn1 product-cart-Btn">Add To Cart</button>
-        <button type="button" class="BuyNowBtn">Buy it now</button>
-      </div>
+
+      <form
+        action="/cart/add"
+        method="post"
+        class="ajax-cart-form">
+        <div class="product-page--addToCart">
+          <input
+            type="hidden"
+            name="id"
+            value="{{ product.variants.first.id }}" />
+          <button type="submit" class="ajax-cart-btn product-page-cart-btn">Add to Cart</button>
+          {% form 'product', product %}
+            {{ form | payment_button }}
+          {% endform %}
+        </div>
+      </form>
+
+
     {% else %}
       <div class="product-page--addToCart">
         <button
@@ -274,8 +375,11 @@
     <div class="product-page--description">
       <p>{{ product.description }}</p>
     </div>
+
   </div>
 </div>
+
+
 
 <script>
   const minusBtn = document.getElementById("minus-btn");
@@ -327,7 +431,8 @@
       console.log("card pressed")
       magnifiedProductContainer.style.display = 'flex';
     });
-    // When product--card-shop is clicked
+
+// When product--card-shop is clicked
     var productsecondCardShop = document.querySelector('.product--card-shop:nth-of-type(3)');
     productsecondCardShop.addEventListener('click', function() {
       console.log("card pressed")
@@ -335,13 +440,13 @@
     });
 
 // When material-symbols-outlined with content 'close' is clicked
-var materialSymbols = document.querySelectorAll('.material-symbols-outlined');
-materialSymbols.forEach(function(symbol) {
-  if (symbol.textContent.trim() === 'close') {
-    symbol.addEventListener('click', function() {
-      magnifiedProductContainer.style.display = 'none';
+    var materialSymbols = document.querySelectorAll('.material-symbols-outlined');
+    materialSymbols.forEach(function(symbol) {
+      if (symbol.textContent.trim() === 'close') {
+        symbol.addEventListener('click', function() {
+          magnifiedProductContainer.style.display = 'none';
+        });
+      }
     });
-  }
-});
   });
 </script>

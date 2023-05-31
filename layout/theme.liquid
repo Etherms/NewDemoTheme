@@ -121,5 +121,46 @@
     <script>
       AOS.init();
     </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+
+// Ajax add to cart
+        var addToCartForms = document.querySelectorAll('.ajax-cart-form');
+        addToCartForms.forEach(function(form) {
+          form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(form);
+            var submitButton = form.querySelector('.ajax-cart-btn');
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Adding...';
+
+            fetch(form.action, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-Requested-With': 'XMLHttpRequest'
+              },
+              body: new URLSearchParams(formData).toString()
+            }).then(function(response) {
+              if (response.ok) {
+                submitButton.innerHTML = 'Added';
+                setTimeout(function() {
+                  submitButton.innerHTML = 'Add to Cart';
+                  submitButton.disabled = false;
+                }, 1000);
+              } else {
+                console.error('Error:', response.statusText);
+                submitButton.innerHTML = 'Error';
+                submitButton.disabled = false;
+              }
+            }).catch(function(error) {
+              console.error('Error:', error);
+              submitButton.innerHTML = 'Error';
+              submitButton.disabled = false;
+            });
+          });
+        });
+      });
+    </script>
   </body>
 </html>

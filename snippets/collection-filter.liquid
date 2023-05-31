@@ -1,12 +1,17 @@
 <style>
   form.filter-form {
     float: left;
-    width: 255px;
+    width: 278px;
+    padding-right: 5px;
     margin-left: 50px;
     position: absolute;
     overflow-y: scroll;
     top: 3px;
     max-height: 326px;
+  }
+  form.filter-form::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
   }
 
   summary {
@@ -19,8 +24,6 @@
     outline: none;
   }
   summary span {
-    color: #262626;
-    text-shadow: 1px 1px 1px white;
     font-family: 'Roboto';
     font-weight: 500;
   }
@@ -30,7 +33,6 @@
     font-size: 33px;
     height: 25px;
     margin-top: -25px;
-    color: #464646;
   }
   .filter-group[open] .filter-group-summary:after {
     content: "-";
@@ -40,10 +42,8 @@
     border-bottom: none;
     padding: 10px 0;
     margin-bottom: 3px;
-    border-bottom: 1px solid black;
   }
   .filter-group-display__list-item label {
-    color: #3e3e3e;
     font-weight: 400;
     font-size: 14px;
   }
@@ -59,6 +59,7 @@
   }
   .price-input {
     display: flex;
+    align-items: center;
   }
   .filter-group-display__price-range {
     padding-right: 25px;
@@ -149,10 +150,25 @@
     -moz-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
   }
+  span.close-filter {
+    display: none;
+  }
+  .label-price {
+    margin: 0;
+  }
+  .maximum-input {
+    padding-left: 2px;
+  }
+  .minimum-input {
+    padding-right: 2px;
+  }
 </style>
 
 
 <form class="filter-form">
+  <span class="material-symbols-outlined close-filter">
+    close
+  </span>
   {% for filter in collection.filters %}
     <details class="filter-group" open>
       <summary class="filter-group-summary">
@@ -206,6 +222,7 @@
             </div>
 
             <div class="price-input">
+              <p class="minimum-input label-price">Min</p>
               <div class="filter-group-display__price-range-from price-input">
                 <input name="{{ filter.min_value.param_name }}"id="Filter-{{ filter.min_value.param_name }}"class="input-min"{% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}type="number"placeholder="0"min="0"max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"value="0">
               </div>
@@ -213,11 +230,9 @@
               <div class="filter-group-display__price-range-to price-input">
                 <input name="{{ filter.max_value.param_name }}"id="Filter-{{ filter.max_value.param_name }}"class="input-max"{% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}type="number"placeholder="{{ filter.range_max | money | replace: ',', '' }}"min="0"max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"value="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
               </div>
+              <p class="maximum-input label-price">Max</p>
             </div>
           </div>
-
-
-
         {% endcase %}
       </div>
     </details>

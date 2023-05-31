@@ -19,7 +19,7 @@ html, body{
   min-width: 380px;
   height: 78vh;
   padding: 0 10px ;
-  margin: 75px 0 22px;
+  margin: 87px 0 22px;
 }
 
 .swiper, .swiper-container {
@@ -34,7 +34,7 @@ html, body{
     background: url(https://cdn.shopify.com/s/files/1/0743/0334/0829/files/felipepelaquim-6zO5VKogoZE-unsplash.jpg?v=1684909972);
 }
 .two{
-  background:url(https://cdn.shopify.com/s/files/1/0743/0334/0829/files/domino-164_6wVEHfI-unsplash.jpg?v=1684907656);
+  background:url(https://cdn.shopify.com/s/files/1/0743/0334/0829/files/erik-mclean-ySm-r5NqPbA-unsplash.jpg?v=1685427404);
 }
 .three
 {
@@ -251,6 +251,8 @@ html, body{
 .collection {
     min-width: 380px;
     height: 100vh;
+    margin: 0 15px;
+    border-radius: 15px;
   }
   .collection-container {
     min-width: 380px;
@@ -258,6 +260,7 @@ html, body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
   .grid-container {
     height: 80%;
@@ -347,10 +350,12 @@ html, body{
     min-width: 380px;
   }
 
-  .banner-area {padding: 40px;
-width: 100%;
-margin: 20px auto;
-}
+  .banner-area {
+    padding: 40px;
+    width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
+  }
 .banner-area:after,
 .banner-area:before {
 content: "";

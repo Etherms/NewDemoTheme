@@ -20,20 +20,29 @@
   .brand-card img {
     width: 100px;
   }
+  .white-brand-logo {
+    display: none;
+  }
 </Style>
 
-<div
-  class="brandSectionContainer">
-  <h1>{{ section.settings.featuredBrandid }}</h1>
+<div class="brandSectionContainer">
+  <h1 data-aos="zoom-in" data-aos-duration="1500">{{ section.settings.featuredBrandid }}</h1>
   <div
-    class="allBrandsContainer">
+    class="allBrandsContainer"
+    data-aos="fade-up"
+    data-aos-duration="1000">
     {% for block in section.blocks %}
-      <div
-        class="brand-card">
-        <a
-          href="{{ block.settings.brand_link }}"><img
+      <div class="brand-card">
+        <a href="{{ block.settings.brand_link }}">
+          <img
             src="{{ block.settings.brand_logo | img_url: '1200x1200'}}"
-            alt=""></a>
+            alt="{{ block.settings.brand_name }}"
+            class="dark-brand-logo">
+          <img
+            src="{{ block.settings.second_brand_logo | img_url: '1200x1200' }}"
+            alt="{{ block.settings.brand_name }}"
+            class="white-brand-logo">
+        </a>
       </div>
     {% endfor %}
   </div>
@@ -59,7 +68,15 @@
           {
             "type": "image_picker",
             "id": "brand_logo",
-            "label": "Image"
+            "label": "Dark Brand Image"
+          }, {
+            "type": "image_picker",
+            "id": "second_brand_logo",
+            "label": "White Brand Image"
+          }, {
+            "type": "text",
+            "id": "brand_name",
+            "label": "Brand Name"
           }, {
             "type": "url",
             "id": "brand_link",

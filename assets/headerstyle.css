@@ -6,7 +6,7 @@
     position: fixed;
     z-index: 20;
     width: 100%;
-    max-height: 240px;
+    max-height: 515px;
     transition: background-color 0.2s,  box-shadow 0.2s ease-in-out, margin-top 0.1s !important;
 }
 
@@ -35,6 +35,9 @@
 header.scrolled {
     border-bottom: none;
     margin-top: -50px;
+}
+header.scrolled .header-wrapper{
+  box-shadow: 0px 4px 10px 0px #383838;
 }
 .header.scrolled > .navmenu-dropdown {
     box-shadow: 0 7px 7px #00000070;
@@ -74,7 +77,7 @@ span.material-symbols-outlined{
 }
 .toggle{
     display: none;
-    height: 30px;
+    height: 62px;
 }
 
 .navmenu-dropdown{
@@ -333,13 +336,16 @@ img.googleIcon {
     width: 29px;
 }
 /* Cart div Function Design  */
+.header.scrolled .cart-value{
+  top:0;
+}
 .cart-value {
     display: none;
     width: 453px;
     height: 100vh;
     background: #ffffff;
     position: absolute;
-    top: 0;
+    top: -50px;
     right: 0;
     flex-direction: column;
     border-radius: 29px 0px 0px 29px;
@@ -361,7 +367,7 @@ span.material-symbols-outlined.close-cart {
 }
 .cart-value .seperator {                /*Seperator For Cart*/
     width: 91%; 
-    border-bottom: 1px solid black;
+
     margin-left: 7%;
 }
 .cart-Empty svg{
@@ -431,9 +437,7 @@ a.start-shop:hover {
   }
 
 
-  h2.itemTitle {
-    font-size: 22px;
-  }
+
   p.itemDesc {
     margin-bottom: 13px;
     font-size: 11px;
@@ -465,7 +469,7 @@ a.start-shop:hover {
   }
   span.material-symbols-outlined.delete {
     margin-left: 20px;
-    color: red;
+    color: red !important;
     cursor: pointer;
   }
 
@@ -503,21 +507,19 @@ a.start-shop:hover {
   a.view-cart {
     text-decoration: none;
     background: #303c43;
-    color: white;
+    color: #fff;
     padding: 11px 28px;
     border-radius: 25px;
     font-weight: 500;
     margin-top: 19px;
-  }
-  a.checkout {
-    text-decoration: none;
+    transition: all 0.5s;
+}
+
+a.view-cart:hover {
     color: white;
-    font-weight: 500;
-    background: #3f72e5;
-    padding: 12px 76px;
-    border-radius: 38px;
-    margin-top: 19px;
-  }
+    transform: scale(1.1);
+}
+
   /* Cart Heading Style */
   .cart-value-container {
     height: 441px;
@@ -542,9 +544,6 @@ a.start-shop:hover {
     padding-top: 14px;
     margin-left: 9px;
   }
-  h2.itemTitle {
-    font-size: 22px;
-  }
   p.itemDesc {
     margin-bottom: 13px;
     font-size: 11px;
@@ -572,11 +571,6 @@ a.start-shop:hover {
   span.material-symbols-outlined.remove {
     padding-left: 10px;
     color: black;
-    cursor: pointer;
-  }
-  span.material-symbols-outlined.delete {
-    margin-left: 20px;
-    color: red;
     cursor: pointer;
   }
 
@@ -620,15 +614,21 @@ a.start-shop:hover {
     font-weight: 500;
     margin-top: 19px;
   }
-  a.checkout {
+  input.checkout {
     text-decoration: none;
-    color: white;
+    color: #fff;
     font-weight: 500;
     background: #3f72e5;
     padding: 12px 76px;
     border-radius: 38px;
     margin-top: 19px;
-  }
+    border: none;
+    transition: all 0.4s;
+}
+
+input.checkout:hover {
+    transform: scale(1.1);
+}
   .mobile-view{
     display: none;
   }

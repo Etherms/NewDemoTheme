@@ -11,8 +11,9 @@
   /* Featured Section */
 .featured_section{
   min-width: 380px;
-  margin-top: 20px;
   position: relative;
+  margin: 20px 10px 0;
+  border-radius: 15px;
 }
 .background-color{
   padding-top: 50px;
@@ -66,7 +67,7 @@ h2.product-title {
     font-size: 20px;
     font-family: 'Roboto';
     font-weight: 500;
-    color: hsl(211 9% 18% / 1);
+ 
 }
 a.featured-button.button {
     text-decoration: none;
@@ -125,7 +126,7 @@ a.featured-button.button:hover {
   <h3 class="f-collection" data-aos="fade-up"  data-aos-duration="2000">{{ title }}<h3>
   <p class="f-section-desc" data-aos="fade-up"  data-aos-duration="2500">{{ collectionDesc }}</p>
 <div class="{{ section.id }} featured-swiper container overflow-hidden">
-  <div class="swiper-wrapper f-wrapper"  data-aos="zoom-out" data-aos-duration="2000">
+  <div class="swiper-wrapper f-wrapper"  data-aos="zoom-out" data-aos-duration="3000">
     {% for product in section.settings.collection.products %}
       <div class="swiper-slide">
         {% for image in product.images %}

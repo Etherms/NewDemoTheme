@@ -1,15 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var toggle = document.querySelector('.toggle');
-    var navmenuDropdown = document.querySelector('.navmenu-dropdown');
+  var toggle = document.querySelector('.toggle');
+  var navmenuDropdown = document.querySelector('.navmenu-dropdown');
+  var headerWrapper = document.querySelector('.header-wrapper'); // Corrected selector
 
-    toggle.addEventListener('click', function() {
-      if (navmenuDropdown.style.display === 'none') {
-        navmenuDropdown.style.display = 'block';
-      } else {
-        navmenuDropdown.style.display = 'none';
-      }
-    });
+  toggle.addEventListener('click', function() {
+    if (navmenuDropdown.style.display === 'none') {
+      navmenuDropdown.style.display = 'block';
+      headerWrapper.style.boxShadow = 'none';
+      headerWrapper.style.borderBottom = '1px solid black';
+    } else {
+      navmenuDropdown.style.display = 'none';
+      headerWrapper.style.boxShadow = '0px 4px 10px #383838';
+      headerWrapper.style.borderBottom = 'none';
+    }
   });
+});
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var login = document.querySelector('.person');

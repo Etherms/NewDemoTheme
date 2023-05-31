@@ -1,16 +1,11 @@
 {
   "sections": {
-    "9d7753f4-1830-4dc0-bf9b-b2583c3eb3d3": {
-      "type": "about-us",
-      "settings": {}
-    },
     "main": {
       "type": "product-card",
       "settings": {}
     }
   },
   "order": [
-    "9d7753f4-1830-4dc0-bf9b-b2583c3eb3d3",
     "main"
   ]
 }

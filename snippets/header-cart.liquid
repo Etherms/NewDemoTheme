@@ -1,3 +1,129 @@
+<style>
+  p.cart-count {
+    position: absolute;
+    top: 18px;
+    left: 75px;
+    font-size: 13px;
+  }
+  .cart-header-container {
+    min-height: 440px;
+    max-height: 440px;
+    overflow-y: scroll;
+    padding-left: 30px;
+  }
+  .header-cart-image {
+    width: 80px;
+    height: 105px;
+    margin-top: 7px;
+  }
+  .item-header-container {
+    display: flex;
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 8px;
+  }
+  a.header-cart-tittle {
+    text-decoration: none;
+  }
+  h2.itemTitle {
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Roboto', 'sans-serif';
+    margin-bottom: 0;
+  }
+  .cart-item__image-container.gradient.global-media-settings {
+    flex: 1;
+  }
+  .price-container {
+    margin-left: 64px;
+    padding-top: 15px;
+    min-width: 85px;
+    flex: 1;
+  }
+  .item-description {
+    padding-top: 20px;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    position: relative;
+  }
+  .item-description input[type="text"] {
+    text-align: center;
+    width: 33px;
+    border: 1px solid #4e4e4e;
+    height: 27px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    outline: none;
+    padding-top: 4px;
+    background: none;
+  }
+  .item-description a {
+    display: inline-block;
+  }
+  p.item--brand {
+    margin: 0 0 8px;
+    font-size: 11px;
+  }
+  /*Quantity Button*/
+  .quantity-button-container {
+    display: flex;
+  }
+  input.item-minus-btn {
+    border: 1px solid #4e4e4e;
+    border-right: none;
+    border-radius: 15px 0 0 15px;
+  }
+  input.item-plus-btn {
+    border: 1px solid #4e4e4e;
+    border-left: none;
+    border-radius: 0 15px 15px 0;
+  }
+  .quantity-btn {
+    font-weight: 600;
+    background: none;
+    border: none;
+    font-size: 17px;
+    height: 27px;
+    padding: 0 10px;
+  }
+
+  /*Remove button*/
+  a.remove-item {
+    margin-left: 10px;
+    text-decoration: none;
+  }
+  .remove-item span.material-symbols-outlined {
+    color: #fd3333 !important;
+  }
+
+  /*Update Cart Button*/
+  input.update-cart-btn {
+    background: hsl(210 61% 31% / 1);
+    color: white;
+    font-size: 16px;
+    font-family: 'Roboto', 'sans-serif';
+    border: 1px solid #727272;
+    border-radius: 29px;
+    padding: 10px 35px;
+    margin: 10px auto 0;
+    display: block;
+    transition: all 0.5s;
+  }
+
+  input.update-cart-btn:hover {
+    transform: scale(1.1);
+  }
+  .total-number span {
+    font-weight: 700;
+    color: #0b63e7 !important;
+    font-size: 17px;
+  }
+</style>
+
+
+
 <div class="cart-value">
   <div class="exit-btn">
     <span class="material-symbols-outlined close-cart">
@@ -5,62 +131,142 @@
     </span>
   </div>
   <div class="cart-counter">
-    <span>Cart&#8304;</span>
+    <span>Cart</span>
+    {% if cart.item_count > 0 %}
+      <p class="cart-count">({{ cart.item_count }})</p>
+    {% else %}
+      <p class="cart-count">(0)</p>
+    {% endif %}
   </div>
   <div class="seperator"></div>
 
-  <!--Start of the Content of the Cart-->
-
-  <!--When Cart is Empty -->
-  {% comment %} <!--Make This Dynamic-->
-  <div class="cart-Empty"> {% render 'icon-cart-empty' %}
-  <span>Your cart is currently empty.
-  </span>
-  <a href="/collections/all" class="start-shop">Start Shopping</a>
-  </div> {% endcomment %}<!--Adding Something In Cart-->
-
-    <div class="cart-value-container"> <div class="cart-inside">
-      <div class="cart-value-img">
-        <img src="{{'shoe.jpg' | asset_url}}" alt="#">
+  <form
+    action="{{ routes.cart_url }}"
+    method="post"
+    id="cart"
+    class="header-cart">
+    {% if cart.items.size == 0 %}
+      <div class="cart-Empty">
+        {% render 'icon-cart-empty' %}
+        <span>Your cart is currently empty.
+        </span>
+        <a href="https://store2968.myshopify.com/collections/all" class="start-shop">Start Shopping</a>
       </div>
-      <div class="cart-value-info">
-        <h2 class="itemTitle">
-          Addidas daadad</h2>
-        <p class="itemDesc">
-          Black & White</p>
-        <div class="counter-container">
-          <div class="counter">
-            <span class="material-symbols-outlined add">
-              add
-            </span>
-            <span class="item-number">1</span>
-            <span class="material-symbols-outlined remove">
-              remove
-            </span>
+
+
+
+    {% else %}
+      <div class="cart-header-container">
+        {% for item in cart.items %}
+          <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
+            <td class="cart-item__media">
+              {% if item.image %}
+
+
+
+                <div class="item-header-container">
+                  <div class="cart-item__image-container gradient global-media-settings">
+                    <img
+                      src="{{ item.image | image_url: width: 300 }}"
+                      class="cart-item__image header-cart-image"
+                      alt="{{ item.image.alt | escape }}"
+                      loading="lazy"
+                      width="150"
+                      height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}">
+                  </div>
+
+                  <div class="item-description">
+                    <a
+                      href="{{ item.url }}"
+                      class="cart-item__link header-cart-tittle"
+                      aria-hidden="true"
+                      tabindex="-1">
+                      <h2 class="itemTitle">
+                        {{ item.title }}</h2>
+                    </a>
+                    <p class="item--brand">{{ item.vendor }}</p>
+                    <div class="quantity-button-container">
+                      <input
+                        class="item-minus-btn quantity-btn minus{{ item.index }}"
+                        type="button"
+                        value="-">
+                      <input
+                        class="header-cart-item-quantity quantity{{ item.index }}"
+                        type="text"
+                        name="updates[]"
+                        value="{{ item.quantity }}">
+                      <input
+                        class="item-plus-btn quantity-btn plus{{ item.index }}"
+                        type="button"
+                        value="+">
+                      <a href="{{ item.url_to_remove }}" class="remove-item">
+                        <span class="material-symbols-outlined">
+                          delete
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+
+
+                  <div class="price-container">
+                    <span class="Price">{{ item.price | money }}</span>
+                  </div>
+                </div>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        <input
+          type="submit"
+          value="Update Cart"
+          class="update-cart-btn">
+      </div>
+
+
+      <div class="end-of-cart">
+        <div class="top-end">
+          <div class="total-text">
+            <h3>Total</h3>
+            <span>Taxes and shopping calculated at checkout.</span>
           </div>
-          <span class="material-symbols-outlined delete">
-            delete
-          </span>
+          <div class="total-number">
+            <span>{{ cart.items_subtotal_price | money }}</span>
+          </div>
+        </div>
+        <div class="bottom-end">
+          <a href="https://store2968.myshopify.com/cart" class="view-cart">View cart</a>
+          <input
+            type="submit"
+            name="checkout"
+            value="Checkout"
+            class="checkout">
         </div>
       </div>
-      <div class="price-container">
-        <span class="Price">$122.50</span>
-      </div>
     </div>
-  </div>
-  <div class="end-of-cart">
-    <div class="top-end">
-      <div class="total-text">
-        <h3>Total</h3>
-        <span>Tax included. Shipping calculated at checkout.</span>
-      </div>
-      <div class="total-number">
-        <span>$122.50</span>
-      </div>
-    </div>
-    <div class="bottom-end">
-      <a href="#" class="view-cart">View cart</a>
-      <a href="#" class="checkout">Checkout</a>
-    </div>
-  </div>
-</div>
+
+  {% endif %}
+</form>
+
+{% for item in cart.items %}
+  <script>
+    (function() {
+      var minusBtn = document.getElementsByClassName("minus{{ item.index }}")[0];
+      var count = document.getElementsByClassName("quantity{{ item.index }}")[0];
+      var plusBtn = document.getElementsByClassName("plus{{ item.index }}")[0];
+
+      var countNum = parseInt(count.value);
+
+      minusBtn.addEventListener("click", () => {
+        if (countNum > 1) {
+          countNum -= 1;
+          count.value = countNum;
+        }
+      });
+
+      plusBtn.addEventListener("click", () => {
+        countNum += 1;
+        count.value = countNum;
+      });
+    })();
+  </script>
+{% endfor %}
